@@ -1,0 +1,1 @@
+export type IResponsePriorities = "O" | "A" | "B" | "C" | "D" | "E";
