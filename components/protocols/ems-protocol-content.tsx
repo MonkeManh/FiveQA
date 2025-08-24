@@ -68,12 +68,14 @@ function ServicesList({ services }: { services: IEMSProtocol["services"] }) {
         {services.map((service) => (
           <div
             key={service.name}
-            className="flex justify-between items-center p-2 bg-muted rounded"
+            className="flex justify-between items-center p-2 bg-muted rounded-xs"
           >
             <span className="font-medium">{service.name}</span>
             <Badge
               variant="outline"
-              className={getPriorityBadgeClass(service.priority)}
+              className={`${getPriorityBadgeClass(
+                service.priority
+              )} rounded-xs`}
             >
               {getPriorityLabel(service.priority)}
             </Badge>
@@ -119,13 +121,13 @@ function AnswerItem({ answer }: { answer: IEMSAnswer }) {
   ];
 
   return (
-    <div className="ml-4 p-3 bg-muted/50 rounded border-l-2 border-blue-200">
+    <div className="ml-4 p-3 bg-muted/50 rounded-xs border-l-4 border-blue-200">
       <div className="flex flex-wrap gap-2 items-start">
-        <Badge variant="outline" className="text-xs">
+        <Badge variant="outline" className="text-xs  rounded-xs">
           {answer.answer}
         </Badge>
         <span className="text-sm text-muted-foreground">
-          → {answer.display}
+          {answer.display && `→ ${answer.display}`}
         </span>
       </div>
 
@@ -133,20 +135,20 @@ function AnswerItem({ answer }: { answer: IEMSAnswer }) {
         {actionBadges
           .filter(({ condition }) => condition)
           .map(({ label, className }, idx) => (
-            <Badge key={idx} className={`text-xs ${className}`}>
+            <Badge key={idx} className={`text-xs ${className}  rounded-xs`}>
               {label}
             </Badge>
           ))}
       </div>
 
       {answer.preRenderLogic && (
-        <div className="mt-2 p-2 bg-yellow-50 rounded text-xs">
+        <div className="mt-2 p-2 bg-black/15 rounded-xs text-xs">
           <strong>Condition:</strong> {answer.preRenderLogic}
         </div>
       )}
 
       {answer.dependencyLogic && (
-        <div className="mt-2 p-2 bg-blue-900/25 rounded text-xs">
+        <div className="mt-2 p-2 bg-blue-900/25 rounded-xs text-xs">
           <strong>Dependency:</strong> {answer.dependencyLogic}
         </div>
       )}
@@ -179,13 +181,13 @@ function QuestionsList({
       {questions.map((question, index) => {
         const isOpen = openQuestions.has(index);
         return (
-          <div key={index} className="border rounded-lg bg-card">
+          <div key={index} className="border rounded-xs bg-card">
             <button
               onClick={() => toggleQuestion(index)}
               className="w-full p-4 text-left hover:bg-muted/50 transition-colors duration-200 flex items-center justify-between"
             >
               <div className="flex items-start gap-3">
-                <Badge className="text-xs bg-slate-100 text-slate-800 min-w-fit">
+                <Badge className="text-xs bg-slate-100 text-slate-800 min-w-fit rounded-xs">
                   Q{index + 1}
                 </Badge>
                 <div className="flex-1 text-sm font-medium">
@@ -197,21 +199,9 @@ function QuestionsList({
                   ) && (
                     <Badge
                       variant="outline"
-                      className="bg-blue-50 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
+                      className="bg-blue-50 text-blue-700 dark:bg-blue-900 dark:text-blue-300 rounded-xs"
                     >
                       Patient Dependant
-                    </Badge>
-                  )}
-
-                {question.preRenderDeps &&
-                  question.preRenderDeps?.some((dep) =>
-                    ["proximity"].includes(dep)
-                  ) && (
-                    <Badge
-                      variant="outline"
-                      className="bg-emerald-50 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300"
-                    >
-                      Caller Type Dependant
                     </Badge>
                   )}
 
@@ -221,7 +211,7 @@ function QuestionsList({
                   ) && (
                     <Badge
                       variant="outline"
-                      className="bg-purple-50 text-purple-700 dark:bg-purple-900 dark:text-purple-300"
+                      className="bg-purple-50 text-purple-700 dark:bg-purple-900 dark:text-purple-300  rounded-xs"
                     >
                       Answer Dependent
                     </Badge>
@@ -239,7 +229,7 @@ function QuestionsList({
                 {question.firstPersonText && (
                   <div className="mb-6 flex items-center gap-2">
                     <p className="text-xs">First Person Text:</p>
-                    <Badge className="text-xs bg-muted text-muted-foreground">
+                    <Badge className="text-xs bg-muted text-muted-foreground rounded-xs">
                       {question.firstPersonText}
                     </Badge>
                   </div>
@@ -247,13 +237,13 @@ function QuestionsList({
 
                 <div className="mb-6 flex items-center gap-2">
                   <p className="text-xs">Question Type:</p>
-                  <Badge className="text-xs bg-muted text-muted-foreground">
+                  <Badge className="text-xs bg-muted text-muted-foreground  rounded-xs">
                     {question.questionType}
                   </Badge>
                 </div>
 
                 {question.preRenderLogic && (
-                  <div className="mb-6 p-3 bg-blue-900/25 rounded text-xs">
+                  <div className="mb-6 p-3 bg-blue-900/25 rounded-xs text-xs">
                     <strong>Show when:</strong> {question.preRenderLogic}
                   </div>
                 )}
@@ -302,10 +292,12 @@ function DeterminantsList({
     <div className="space-y-4">
       <h4 className="font-semibold text-sm">Determinant Codes:</h4>
       {determinants.map((determinant, index) => (
-        <div key={index} className="border rounded-lg p-4">
+        <div key={index} className="border rounded-xs p-4">
           <div className="flex items-center gap-2 mb-3">
             <Badge
-              className={`${priorityColors[determinant.priority]} font-medium`}
+              className={`${
+                priorityColors[determinant.priority]
+              } font-medium rounded-xs`}
             >
               {determinant.priority}
             </Badge>
@@ -318,7 +310,7 @@ function DeterminantsList({
             {determinant.codes.map((code, codeIndex) => (
               <div
                 key={codeIndex}
-                className="p-3 bg-muted/30 rounded border-l-4"
+                className="p-3 bg-muted/30 rounded-xs border-l-4"
                 style={{
                   borderLeftColor: getBorderColor(determinant.priority),
                 }}
@@ -326,7 +318,10 @@ function DeterminantsList({
                 <div className="flex justify-between items-center gap-2">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <Badge variant="outline" className="text-xs font-mono">
+                      <Badge
+                        variant="outline"
+                        className="text-xs font-mono rounded-xs"
+                      >
                         {code.code}
                       </Badge>
                     </div>
@@ -337,9 +332,13 @@ function DeterminantsList({
                       {code.text}
                     </div>
                   </div>
-                  <Link href={`/response-plans/ems?plan=${getEMSPlan(code.recResponse)?.id}`}>
-                    <Badge className="text-xs bg-gray-100 text-gray-800">
-                      Response: {getEMSPlan(code.recResponse)?.name}
+                  <Link
+                    href={`/response-plans/ems?plan=${
+                      getEMSPlan(code.recResponse)?.id
+                    }`}
+                  >
+                    <Badge className="text-xs bg-gray-100 text-gray-800 rounded-xs">
+                      Plan: {getEMSPlan(code.recResponse)?.name}
                     </Badge>
                   </Link>
                 </div>
@@ -357,24 +356,26 @@ function DeterminantsList({
                         {code.suffixes.map((suffix, subIndex) => (
                           <div
                             key={subIndex}
-                            className="flex justify-between items-center p-2 bg-muted rounded text-xs"
+                            className="flex justify-between items-center p-2 bg-muted rounded-xs text-xs"
                           >
                             <span>
                               <Badge
                                 variant="outline"
-                                className="text-xs font-mono mr-2"
+                                className="text-xs font-mono mr-2 rounded-xs"
                               >
                                 {suffix.suffix}
                               </Badge>
                               {suffix.text}
                             </span>
                             {suffix.recResponse && (
-                              <Link href={`/response-plans/ems?plan=${getEMSPlan(suffix.recResponse)?.id}`}>
-
-                              <Badge className="text-xs">
-                                Response:{" "}
-                                {getEMSPlan(suffix.recResponse)?.name}
-                              </Badge>
+                              <Link
+                                href={`/response-plans/ems?plan=${
+                                  getEMSPlan(suffix.recResponse)?.id
+                                }`}
+                              >
+                                <Badge className="text-xs rounded-xs">
+                                  Plan: {getEMSPlan(suffix.recResponse)?.name}
+                                </Badge>
                               </Link>
                             )}
                           </div>
@@ -400,7 +401,7 @@ function ProtocolCard({ protocol }: { protocol: IEMSProtocol }) {
   const defaultPriorityName = priorityNames[defaultPriority];
 
   return (
-    <Card className="w-full py-2 rounded-sm">
+    <Card className="w-full py-2 rounded-xs">
       <Collapsible open={isOpen} onOpenChange={setIsOpen} className="-my-2">
         <CollapsibleTrigger asChild>
           <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors duration-200 py-4">
@@ -438,14 +439,14 @@ function ProtocolCard({ protocol }: { protocol: IEMSProtocol }) {
 
             <div className="flex items-center gap-2">
               <h4 className="font-semibold text-sm">Default Priority:</h4>
-              <Badge className={`${defaultPriorityClass} font-mono`}>
+              <Badge className={`${defaultPriorityClass} font-mono rounded-xs`}>
                 {defaultPriority} - {defaultPriorityName}
               </Badge>
             </div>
 
             <div className="flex items-center gap-2">
               <h4 className="font-semibold text-sm">Default Code:</h4>
-              <Badge className="bg-muted-foreground/25 text-primary font-mono">
+              <Badge className="bg-muted-foreground/25 text-primary font-mono rounded-xs">
                 {protocol.defaultCode} -{" "}
                 {protocol.determinants
                   .flatMap((d) => d.codes)
@@ -482,13 +483,13 @@ export default function EMSProtocolsContent() {
           and response priorities.
         </p>
 
-        <div className="mt-4 p-4 bg-muted/30 rounded-lg">
+        <div className="mt-4 p-4 bg-muted/30 rounded-xs">
           <h3 className="font-semibold text-sm mb-2">Priority Color Legend:</h3>
           <div className="flex flex-wrap gap-2">
             {Object.entries(priorityNames).map(([key, name]) => (
               <Badge
                 key={key}
-                className={priorityColors[key as keyof typeof priorityColors]}
+                className={`${priorityColors[key as keyof typeof priorityColors]} rounded-xs`}
               >
                 {key} - {name}
               </Badge>

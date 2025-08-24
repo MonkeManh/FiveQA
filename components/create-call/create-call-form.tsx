@@ -658,7 +658,7 @@ export default function CreateCallForm() {
   }, []);
 
   return (
-    <Card className="max-w-5xl mx-auto">
+    <Card className="max-w-5xl mx-auto rounded-xs">
       {!isLoading ? (
         <>
           <CardHeader>

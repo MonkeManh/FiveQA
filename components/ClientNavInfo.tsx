@@ -70,11 +70,11 @@ export default function ClientNavInfo({ user }: IClientNavInfoProps) {
       {isDispatchPage && user ? (
         <>
           {callsign && (
-            <div className="bg-muted px-3 py-1 rounded-md font-medium text-lg mr-2">
+            <div className="bg-muted px-3 py-1 rounded-xs font-medium text-lg mr-2">
               Dispatcher: {callsign}
             </div>
           )}
-          <div className="bg-muted px-3 py-1 rounded-md font-medium text-lg">
+          <div className="bg-muted px-3 py-1 rounded-xs font-medium text-lg">
             {zuluTime}
           </div>
         </>
@@ -84,7 +84,7 @@ export default function ClientNavInfo({ user }: IClientNavInfoProps) {
             <Link
               key={href}
               href={href}
-              className={`px-4 py-2 rounded-md font-medium transition-all hover:bg-muted hover:text-primary ${
+              className={`px-4 py-2 rounded-xs font-medium transition-all hover:bg-muted hover:text-primary ${
                 pathname.includes(href) ? "bg-muted text-primary" : ""
               }`}
             >

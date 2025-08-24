@@ -42,7 +42,7 @@ export default function LoginForm() {
   };
 
   return (
-    <Card className="w-full max-w-md backdrop-blur-sm">
+    <Card className="w-full max-w-md backdrop-blur-sm rounded-xs">
       <CardHeader>
         <CardTitle className="text-2xl text-center">Dispatcher Login</CardTitle>
         <CardDescription className="text-center">
@@ -57,7 +57,7 @@ export default function LoginForm() {
           </Alert>
         )}
         <Button
-          className="w-full cursor-pointer bg-[#5865F2] hover:bg-[#4752C4] text-white flex items-center justify-center gap-2"
+          className="w-full cursor-pointer bg-[#5865F2] hover:bg-[#4752C4] text-white flex items-center justify-center gap-2 rounded-xs"
           ref={submitButtonRef}
           onClick={handleDiscordLogin}
           disabled={isLoading}

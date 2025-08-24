@@ -9,7 +9,7 @@ export default function SuspendedAccountContent() {
       <div className="min-h-screen container p-6">
         <div className="space-y-8">
           {/* Header */}
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-4 mt-10">
             <div className="flex justify-center">
               <Ban className="h-16 w-16 text-red-500" />
             </div>
@@ -18,7 +18,7 @@ export default function SuspendedAccountContent() {
           </div>
 
           {/* Main Content */}
-          <Card className="border-red-200 dark:border-red-800">
+          <Card className="border-red-200 dark:border-red-800 rounded-xs">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-red-700 dark:text-red-400">
                 <AlertTriangle className="h-5 w-5" />
@@ -30,7 +30,7 @@ export default function SuspendedAccountContent() {
                 Your account has been suspended and you cannot access any FiveQA features or services at this time.
               </p>
 
-              <div className="bg-red-50 dark:bg-red-950/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+              <div className="bg-red-50 dark:bg-red-950/20 p-4 rounded-xs border border-red-200 dark:border-red-800">
                 <p className="text-red-800 dark:text-red-200 text-sm">
                   <strong>What does this mean?</strong> Account suspensions are issued for violations of the user
                   agreement, inappropriate use of the software, or other policy violations. During suspension, you
@@ -51,7 +51,7 @@ export default function SuspendedAccountContent() {
           </Card>
 
           {/* Support Contact */}
-          <Card>
+          <Card className="rounded-xs">
             <CardHeader>
               <CardTitle className="text-foreground">Need Help?</CardTitle>
             </CardHeader>
@@ -61,14 +61,12 @@ export default function SuspendedAccountContent() {
                 team.
               </p>
 
-              <div className="flex gap-4 justify-center">
-                <Button asChild size="lg" className="flex items-center gap-2">
-                  <Link href="/discord" target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="h-4 w-4" />
-                    Contact Support on Discord
-                  </Link>
-                </Button>
-              </div>
+              <Button asChild size="lg" className="flex items-center gap-2 rounded-xs w-fit">
+                <Link href="/discord" target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="h-4 w-4" />
+                  Contact Support on Discord
+                </Link>
+              </Button>
             </CardContent>
           </Card>
 

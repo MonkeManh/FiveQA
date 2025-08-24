@@ -51,7 +51,7 @@ export default function DispatchContent({ user }: IDispatchContentProps) {
           <div className="flex space-x-3">
             <Link
               href="/dashboard"
-              className="p-3 border bg-sky-500/10 border-muted/50 rounded-lg hover:bg-sky-500/25 transition-colors group relative"
+              className="p-3 border bg-sky-500/10 border-muted/50 rounded-xs hover:bg-sky-500/25 transition-colors group relative"
               title="Dashboard"
             >
               <Home className="h-4 w-4 text-sky-500" />
@@ -62,7 +62,7 @@ export default function DispatchContent({ user }: IDispatchContentProps) {
 
             <Link
               href="/protocols"
-              className="p-3 border bg-blue-500/10 border-muted/50 rounded-lg hover:bg-blue-500/25 transition-colors group relative"
+              className="p-3 border bg-blue-500/10 border-muted/50 rounded-xs hover:bg-blue-500/25 transition-colors group relative"
               title="Protocols"
             >
               <FileText className="h-4 w-4 text-blue-500" />
@@ -73,7 +73,7 @@ export default function DispatchContent({ user }: IDispatchContentProps) {
 
             <Link
               href="/response-plans"
-              className="p-3 border bg-green-500/10 border-muted/50 rounded-lg hover:bg-green-500/25 transition-colors group relative"
+              className="p-3 border bg-green-500/10 border-muted/50 rounded-xs hover:bg-green-500/25 transition-colors group relative"
               title="Response Plans"
             >
               <Shield className="h-4 w-4 text-green-500" />
@@ -84,7 +84,7 @@ export default function DispatchContent({ user }: IDispatchContentProps) {
 
             <Link
               href="/guides"
-              className="p-3 border bg-purple-500/10 border-muted/50 rounded-lg hover:bg-purple-500/25 transition-colors group relative"
+              className="p-3 border bg-purple-500/10 border-muted/50 rounded-xs hover:bg-purple-500/25 transition-colors group relative"
               title="Guides"
             >
               <BookOpen className="h-4 w-4 text-purple-500" />
@@ -95,7 +95,7 @@ export default function DispatchContent({ user }: IDispatchContentProps) {
 
             <Link
               href="/reconfigure"
-              className="p-3 border bg-orange-500/10 border-muted/50 rounded-lg hover:bg-orange-500/25 transition-colors group relative"
+              className="p-3 border bg-orange-500/10 border-muted/50 rounded-xs hover:bg-orange-500/25 transition-colors group relative"
               title="Reconfigure"
             >
               <Settings className="h-4 w-4 text-orange-500" />
@@ -108,7 +108,7 @@ export default function DispatchContent({ user }: IDispatchContentProps) {
             <Link href="/create-call">
               <Button
                 variant="destructive"
-                className="flex-1 sm:flex-none cursor-pointer"
+                className="flex-1 sm:flex-none cursor-pointer rounded-xs"
               >
                 <Phone className="mr-2 h-5 w-5" />
                 Create Call

@@ -79,7 +79,7 @@ export default async function ProtocolsPage() {
               return (
                 <Link key={service.title} href={service.href} className="group">
                   <Card
-                    className="h-full transition-all duration-200 hover:shadow-xl hover:scale-[1.01] cursor-pointer"
+                    className="h-full transition-all duration-200 hover:shadow-xl hover:scale-[1.01] cursor-pointer rounded-xs"
                     style={{
                       boxShadow: `0 4px 20px ${service.bg}`,
                     }}
@@ -101,7 +101,7 @@ export default async function ProtocolsPage() {
                       <p className="text-muted-foreground mb-6 leading-relaxed">
                         {service.description}
                       </p>
-                      <Button className="w-full group-hover:bg-primary/90 transition-colors cursor-pointer">
+                      <Button className="w-full group-hover:bg-primary/90 transition-colors cursor-pointer rounded-xs">
                         View Protocols
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
@@ -112,7 +112,7 @@ export default async function ProtocolsPage() {
             })}
           </div>
 
-          <div className="bg-muted/50 rounded-lg p-8 text-center">
+          <div className="bg-muted/50 rounded-xs p-8 text-center">
             <h2 className="text-2xl font-semibold mb-4">
               About ProQA Protocols
             </h2>

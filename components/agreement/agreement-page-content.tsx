@@ -62,7 +62,7 @@ export default function AgreementPageContent({
       <div className="min-h-screen container p-6">
         <div className="space-y-8">
           {/* Header */}
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-4 mt-10">
             <h1 className="text-4xl font-bold text-foreground">
               FiveQA User Agreement
             </h1>
@@ -72,7 +72,7 @@ export default function AgreementPageContent({
               FiveM environment.
             </p>
 
-            <div className="bg-red-100 dark:bg-red-950/30 border-2 border-red-300 dark:border-red-700 p-4 rounded-lg max-w-3xl mx-auto">
+            <div className="bg-red-100 dark:bg-red-950/30 border-2 border-red-300 dark:border-red-700 p-4 rounded-xs max-w-3xl mx-auto">
               <div className="flex items-center justify-center gap-2 text-red-800 dark:text-red-200 mb-2">
                 <AlertTriangle className="h-6 w-6" />
                 <span className="font-bold text-lg">IMPORTANT DISCLAIMER</span>
@@ -84,7 +84,7 @@ export default function AgreementPageContent({
               </p>
             </div>
 
-            <div className="flex items-center justify-center gap-2 text-amber-600 bg-amber-50 dark:bg-amber-950/20 p-3 rounded-lg">
+            <div className="flex items-center justify-center gap-2 text-amber-600 bg-amber-50 dark:bg-amber-950/20 p-3 rounded-xs">
               <AlertTriangle className="h-5 w-5" />
               <span className="font-medium">
                 This software is NOT intended as a replacement for real
@@ -96,7 +96,7 @@ export default function AgreementPageContent({
           {/* Main Agreement Sections */}
           <div className="space-y-6">
             {/* Monetization Policy */}
-            <Card>
+            <Card className="rounded-xs">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Gavel className="h-5 w-5" />
@@ -135,7 +135,7 @@ export default function AgreementPageContent({
                     </li>
                   </ul>
                 </div>
-                <div className="bg-green-50 dark:bg-green-950/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                <div className="bg-green-50 dark:bg-green-950/20 p-4 rounded-xs border border-green-200 dark:border-green-800">
                   <p className="text-green-800 dark:text-green-200 font-medium">
                     ✓ Personal Use Allowed: Users are permitted to duplicate and
                     modify FiveQA for their own personal, non-commercial use.
@@ -145,7 +145,7 @@ export default function AgreementPageContent({
             </Card>
 
             {/* Intended Use */}
-            <Card>
+            <Card className="rounded-xs">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Shield className="h-5 w-5" />
@@ -168,7 +168,7 @@ export default function AgreementPageContent({
                     <li>Non-commercial community roleplay scenarios</li>
                   </ul>
                 </div>
-                <div className="bg-red-50 dark:bg-red-950/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                <div className="bg-red-50 dark:bg-red-950/20 p-4 rounded-xs border border-red-200 dark:border-red-800">
                   <p className="text-red-800 dark:text-red-200 font-medium">
                     ⚠️ FiveQA must never be used for actual emergency services
                     or real-world emergency response.
@@ -178,7 +178,7 @@ export default function AgreementPageContent({
             </Card>
 
             {/* User Responsibilities */}
-            <Card>
+            <Card className="rounded-xs">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Users className="h-5 w-5" />
@@ -202,7 +202,7 @@ export default function AgreementPageContent({
                 </div>
 
                 <div className="mt-6">
-                  <Card className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 border-purple-200 dark:border-purple-800">
+                  <Card className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 border-purple-200 dark:border-purple-800 rounded-xs">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2 text-lg">
                         <Heart className="h-5 w-5 text-purple-600" />
@@ -231,7 +231,7 @@ export default function AgreementPageContent({
             </Card>
 
             {/* Personal Use & Modification Rights */}
-            <Card>
+            <Card className="rounded-xs">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Code className="h-5 w-5" />
@@ -269,7 +269,7 @@ export default function AgreementPageContent({
                     </ul>
                   </div>
                 </div>
-                <div className="bg-amber-50 dark:bg-amber-950/20 p-3 rounded-lg border border-amber-200 dark:border-amber-800">
+                <div className="bg-amber-50 dark:bg-amber-950/20 p-3 border border-amber-200 dark:border-amber-800 rounded-xs">
                   <p className="text-amber-800 dark:text-amber-200 text-sm">
                     <strong>Important:</strong> The monetization prohibition
                     from Section 1 still applies to all modifications and
@@ -280,7 +280,7 @@ export default function AgreementPageContent({
             </Card>
 
             {/* Privacy & Data */}
-            <Card>
+            <Card className="rounded-xs">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Eye className="h-5 w-5" />
@@ -289,7 +289,7 @@ export default function AgreementPageContent({
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-4">
-                  <div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                  <div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-xs border border-blue-200 dark:border-blue-800">
                     <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
                       Authentication & Data Storage
                     </h4>
@@ -328,7 +328,7 @@ export default function AgreementPageContent({
                     </ul>
                   </div>
 
-                  <div className="bg-green-50 dark:bg-green-950/20 p-3 rounded-lg border border-green-200 dark:border-green-800">
+                  <div className="bg-green-50 dark:bg-green-950/20 p-3 rounded-xs border border-green-200 dark:border-green-800">
                     <p className="text-green-800 dark:text-green-200 text-sm">
                       <strong>Data Deletion:</strong> To request deletion of
                       your personal data, contact the development team through
@@ -340,7 +340,7 @@ export default function AgreementPageContent({
             </Card>
 
             {/* Liability & Disclaimers */}
-            <Card>
+            <Card className="rounded-xs">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <FileText className="h-5 w-5" />
@@ -358,7 +358,7 @@ export default function AgreementPageContent({
                   <li>Actions taken by users within FiveM environments</li>
                   <li>Compliance with local regulations or server rules</li>
                 </ul>
-                <div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                <div className="bg-blue-50 dark:bg-blue-950/20 p-4 rounded-xs border border-blue-200 dark:border-blue-800">
                   <p className="text-blue-800 dark:text-blue-200 text-sm">
                     By using FiveQA, you acknowledge that you understand this is
                     simulation software and agree to use it responsibly within
@@ -383,12 +383,13 @@ export default function AgreementPageContent({
                 variant="outline"
                 size="lg"
                 onClick={handleDecline}
+                className="rounded-xs"
               >
                 Decline
               </Button>
               <Button
                 size="lg"
-                className="bg-green-600 hover:bg-green-700 text-white cursor-pointer"
+                className="bg-green-600 hover:bg-green-700 text-white cursor-pointer rounded-xs"
                 onClick={handleAccept}
                 disabled={isLoading}
               >

@@ -74,7 +74,7 @@ export default function ProfilePageContent({ user }: IProfilePageContentProps) {
             {user.verified === 1 ? (
               <Badge
                 variant="secondary"
-                className="bg-emerald-600/50 text-emerald-400"
+                className="bg-emerald-600/50 text-emerald-400 rounded-xs"
               >
                 <Shield className="mr-1 h-3 w-3" />
                 Verified
@@ -82,7 +82,7 @@ export default function ProfilePageContent({ user }: IProfilePageContentProps) {
             ) : (
               <Badge
                 variant="secondary"
-                className="bg-destructive text-destructive-foreground"
+                className="bg-destructive text-destructive-foreground rounded-xs"
               >
                 <Lock className="mr-1 h-3 w-3" />
                 Unverified
@@ -91,7 +91,7 @@ export default function ProfilePageContent({ user }: IProfilePageContentProps) {
             {user.isAdmin === 1 && (
               <Badge
                 variant="secondary"
-                className="bg-emerald-600/25 text-emerald-400"
+                className="bg-emerald-600/25 text-emerald-400 rounded-xs"
               >
                 <Settings className="mr-1 h-3 w-3" />
                 Admin
@@ -101,7 +101,7 @@ export default function ProfilePageContent({ user }: IProfilePageContentProps) {
         </div>
 
         {/* User Information Card */}
-        <Card>
+        <Card className="rounded-xs">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <User className="h-5 w-5" />
@@ -138,7 +138,7 @@ export default function ProfilePageContent({ user }: IProfilePageContentProps) {
             <div className="space-y-3">
               <h3 className="text-sm font-medium">Discord Integration</h3>
               {user.isInDiscord === 1 ? (
-                <div className="flex items-center justify-between p-3 bg-accent/10 rounded-lg">
+                <div className="flex items-center justify-between p-3 bg-accent/10 rounded-xs">
                   <div className="flex items-center gap-3">
                     <div className="h-8 w-8 bg-[#5865F2] rounded-full flex items-center justify-center">
                       <svg
@@ -160,7 +160,7 @@ export default function ProfilePageContent({ user }: IProfilePageContentProps) {
                   </div>
                   <Badge
                     variant="outline"
-                    className="text-xs bg-emerald-400/10 text-emerald-600 border-emerald-600"
+                    className="text-xs bg-emerald-400/10 text-emerald-600 border-emerald-600 rounded-xs"
                   >
                     Connected
                   </Badge>
@@ -178,7 +178,7 @@ export default function ProfilePageContent({ user }: IProfilePageContentProps) {
                   <Link href="/discord" target="_blank">
                     <Button
                       size="sm"
-                      className="bg-[#5865F2] hover:bg-[#4752C4] text-white"
+                      className="bg-[#5865F2] hover:bg-[#4752C4] text-white rounded-xs"
                     >
                       <ExternalLink className="mr-2 h-4 w-4" />
                       Join Discord
@@ -191,7 +191,7 @@ export default function ProfilePageContent({ user }: IProfilePageContentProps) {
         </Card>
 
         {/* Account Settings */}
-        <Card>
+        <Card className="rounded-xs">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Settings className="h-5 w-5" />
@@ -218,9 +218,9 @@ export default function ProfilePageContent({ user }: IProfilePageContentProps) {
                     </p>
                   </div>
                   <Switch
-                    checked={(settings && settings.publicProfile) || false}
+                    checked={(settings && settings.public_profile) || false}
                     onCheckedChange={(checked) =>
-                      updateSetting("publicProfile", checked)
+                      updateSetting("public_profile", checked)
                     }
                   />
                 </div>
@@ -249,19 +249,25 @@ export default function ProfilePageContent({ user }: IProfilePageContentProps) {
                   </p>
                   <Select
                     value={
-                      (settings && settings.dispatchIntegration) || "disabled"
+                      (settings && settings.dispatch_integration) || "disabled"
                     }
                     onValueChange={(value) =>
-                      updateSetting("dispatchIntegration", value)
+                      updateSetting("dispatch_integration", value)
                     }
                   >
-                    <SelectTrigger className="w-48">
+                    <SelectTrigger className="w-48 rounded-xs">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="disabled">Disabled</SelectItem>
-                      <SelectItem value="dojrp">DOJRP Preset</SelectItem>
-                      <SelectItem value="custom">Custom Input</SelectItem>
+                    <SelectContent className="rounded-xs">
+                      <SelectItem className="rounded-xs" value="disabled">
+                        Disabled
+                      </SelectItem>
+                      <SelectItem className="rounded-xs" value="dojrp">
+                        DOJRP Preset
+                      </SelectItem>
+                      <SelectItem className="rounded-xs" value="custom">
+                        Custom Input
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -275,9 +281,9 @@ export default function ProfilePageContent({ user }: IProfilePageContentProps) {
                     </p>
                   </div>
                   <Switch
-                    checked={(settings && settings.soundEffects) || false}
+                    checked={(settings && settings.sound_effects) || false}
                     onCheckedChange={(checked) =>
-                      updateSetting("soundEffects", checked)
+                      updateSetting("sound_effects", checked)
                     }
                   />
                 </div>
@@ -298,9 +304,9 @@ export default function ProfilePageContent({ user }: IProfilePageContentProps) {
                     </p>
                   </div>
                   <Switch
-                    checked={(settings && settings.multiService) || false}
+                    checked={(settings && settings.mult_service) || false}
                     onCheckedChange={(checked) =>
-                      updateSetting("multiService", checked)
+                      updateSetting("mult_service", checked)
                     }
                   />
                 </div>
@@ -320,13 +326,17 @@ export default function ProfilePageContent({ user }: IProfilePageContentProps) {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="w-fit bg-transparent"
+                    className="w-fit bg-transparent rounded-xs"
                   >
                     <ExternalLink className="mr-2 h-4 w-4" />
                     Request Data Deletion
                   </Button>
                 </Link>
-                <Button variant="destructive" size="sm" className="w-fit">
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  className="w-fit rounded-xs"
+                >
                   Log Out
                 </Button>
               </div>

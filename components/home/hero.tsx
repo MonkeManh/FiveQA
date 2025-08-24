@@ -46,7 +46,7 @@ export default function Hero() {
             <Button
               asChild
               size="lg"
-              className="bg-primary hover:bg-primary/90"
+              className="bg-primary hover:bg-primary/90 rounded-xs"
             >
               <Link href="/login">Start</Link>
             </Button>
@@ -54,7 +54,7 @@ export default function Hero() {
               asChild
               variant="outline"
               size="lg"
-              className="bg-background/20 hover:bg-background/30 border-white/20 text-white"
+              className="bg-background/20 hover:bg-background/30 border-white/20 text-white rounded-xs"
             >
               <Link href="/about" style={{ color: "#fff !important" }}>
                 Learn More

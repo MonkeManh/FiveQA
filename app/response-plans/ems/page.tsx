@@ -145,7 +145,7 @@ export default function ResponsePlansPage() {
           </div>
 
           {/* Search and Filters */}
-          <Card className="mb-6">
+          <Card className="mb-6 rounded-xs">
             <CardHeader>
               <CardTitle>Search & Filter</CardTitle>
               <CardDescription>
@@ -162,7 +162,7 @@ export default function ResponsePlansPage() {
                       placeholder="Search plans by name or incident type..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10"
+                      className="pl-10 rounded-xs"
                     />
                   </div>
                 </div>
@@ -171,13 +171,13 @@ export default function ResponsePlansPage() {
                   value={selectedIncidentType}
                   onValueChange={setSelectedIncidentType}
                 >
-                  <SelectTrigger className="w-full md:w-48">
+                  <SelectTrigger className="w-full md:w-48 rounded-xs">
                     <SelectValue placeholder="Incident Type" />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Types</SelectItem>
+                  <SelectContent className="rounded-xs">
+                    <SelectItem value="all" className="rounded-xs">All Types</SelectItem>
                     {incidentTypes.map((type) => (
-                      <SelectItem key={type} value={type}>
+                      <SelectItem key={type} value={type} className="rounded-xs">
                         {type}
                       </SelectItem>
                     ))}
@@ -187,7 +187,7 @@ export default function ResponsePlansPage() {
                 <Button
                   variant={showPoliceOnly ? "default" : "outline"}
                   onClick={() => setShowPoliceOnly(!showPoliceOnly)}
-                  className="w-full md:w-auto"
+                  className="w-full md:w-auto rounded-xs"
                 >
                   <Shield className="mr-2 h-4 w-4" />
                   Police Required
@@ -197,7 +197,7 @@ export default function ResponsePlansPage() {
           </Card>
 
           {/* Results Table */}
-          <Card>
+          <Card className="rounded-xs">
             <CardHeader>
               <CardTitle>Response Plans ({filteredPlans.length})</CardTitle>
               <CardDescription>
@@ -205,7 +205,7 @@ export default function ResponsePlansPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="rounded-md border">
+              <div className="rounded-xs border">
                 <Table>
                   <TableHeader>
                     <TableRow>
@@ -234,14 +234,14 @@ export default function ResponsePlansPage() {
                               )}
                             </Button>
                           </TableCell>
-                          <TableCell className="font-medium">
+                          <TableCell className="font-medium rounded-xs">
                             {plan.name}
                           </TableCell>
                           <TableCell>
-                            <Badge variant="outline">{plan.incidentType}</Badge>
+                            <Badge variant="outline" className="rounded-xs">{plan.incidentType}</Badge>
                           </TableCell>
                           <TableCell>
-                            <Badge variant="secondary">
+                            <Badge variant="secondary" className="rounded-xs">
                               {getTotalUnits(plan.units)} units
                             </Badge>
                           </TableCell>
@@ -252,14 +252,14 @@ export default function ResponsePlansPage() {
                                   <Badge
                                     key={index}
                                     variant="outline"
-                                    className="text-xs"
+                                    className="text-xs rounded-xs"
                                   >
                                     {type}
                                   </Badge>
                                 )
                               )}
                               {plan.units.length > 3 && (
-                                <Badge variant="outline" className="text-xs">
+                                <Badge variant="outline" className="text-xs rounded-xs">
                                   +{plan.units.length - 3} more
                                 </Badge>
                               )}
@@ -270,7 +270,7 @@ export default function ResponsePlansPage() {
                               {plan.sendPolice && (
                                 <Badge
                                   variant="destructive"
-                                  className="text-xs"
+                                  className="text-xs rounded-xs"
                                 >
                                   <Shield className="mr-1 h-3 w-3" />
                                   Police
@@ -279,7 +279,7 @@ export default function ResponsePlansPage() {
                               {plan.sendFire && (
                                 <Badge
                                   variant="destructive"
-                                  className="text-xs"
+                                  className="text-xs rounded-xs"
                                 >
                                   <AlertTriangle className="mr-1 h-3 w-3" />
                                   Fire
@@ -299,12 +299,12 @@ export default function ResponsePlansPage() {
                                   {plan.units.map((unit, index) => (
                                     <div
                                       key={index}
-                                      className="flex items-center justify-between p-3 bg-secondary rounded-lg border"
+                                      className="flex items-center justify-between p-3 bg-secondary rounded-xs border"
                                     >
                                       <span className="font-medium flex items-center gap-2">
                                         {getTypeIcon(unit.type)} {unit.type}
                                       </span>
-                                      <Badge variant="secondary">
+                                      <Badge variant="outline" className="rounded-xs">
                                         {unit.quantity}{" "}
                                         {unit.quantity === 1 ? "unit" : "units"}
                                       </Badge>

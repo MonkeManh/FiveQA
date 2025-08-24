@@ -12,7 +12,7 @@ export default function DeclineUserAgreement() {
       <div className="min-h-screen container p-6">
         <div className="space-y-8">
           {/* Header */}
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-4 mt-10">
             <div className="flex justify-center">
               <XCircle className="h-16 w-16 text-red-500" />
             </div>
@@ -25,7 +25,7 @@ export default function DeclineUserAgreement() {
           </div>
 
           {/* Main Content */}
-          <Card className="border-red-200 dark:border-red-800">
+          <Card className="border-red-200 dark:border-red-800 rounded-xs">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-red-700 dark:text-red-400">
                 <AlertTriangle className="h-5 w-5" />
@@ -38,7 +38,7 @@ export default function DeclineUserAgreement() {
                 access FiveQA until you accept the terms and conditions.
               </p>
 
-              <div className="bg-red-50 dark:bg-red-950/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+              <div className="bg-red-50 dark:bg-red-950/20 p-4 rounded-xs border border-red-200 dark:border-red-800">
                 <p className="text-red-800 dark:text-red-200 text-sm">
                   <strong>Why is this required?</strong> The user agreement
                   ensures all users understand that FiveQA is simulation
@@ -74,7 +74,7 @@ export default function DeclineUserAgreement() {
               <Button
                 variant="outline"
                 size="lg"
-                className="flex items-center gap-2 bg-transparent"
+                className="flex items-center gap-2 bg-transparent rounded-xs"
                 onClick={() => router.push("/agreement")}
               >
                 <ArrowLeft className="h-4 w-4" />

@@ -64,7 +64,7 @@ export default async function ResponsePlansLanding() {
           <p className="text-xl text-muted-foreground mb-4 max-w-2xl mx-auto leading-relaxed">
             Access comprehensive emergency response plans across all services
           </p>
-          <Badge variant="outline" className="text-sm px-4 py-2">
+          <Badge variant="outline" className="text-sm px-4 py-2 rounded-xs">
             {totalPlans} Total Plans Available
           </Badge>
         </div>
@@ -76,7 +76,7 @@ export default async function ResponsePlansLanding() {
             return (
               <Card
                 key={service.id}
-                className={`group relative overflow-hidden border-2 ${service.borderColor} ${service.lightColor} hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 ease-out`}
+                className={`group relative rounded-xs overflow-hidden border-2 ${service.borderColor} ${service.lightColor} hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 ease-out`}
               >
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-5">
@@ -95,7 +95,7 @@ export default async function ResponsePlansLanding() {
                   <div className="flex items-center justify-center w-full">
                     <Badge
                       variant="secondary"
-                      className="text-sm font-semibold px-3 py-1"
+                      className="text-sm font-semibold px-3 py-1 rounded-xs"
                     >
                       {service.planCount} plans
                     </Badge>
@@ -109,7 +109,7 @@ export default async function ResponsePlansLanding() {
 
                   <Link href={service.href}>
                     <Button
-                      className={`w-full ${service.color} ${service.hoverColor} text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group-hover:translate-y-[-2px]`}
+                      className={`w-full ${service.color} ${service.hoverColor} text-white font-semibold py-3 px-6 rounded-xs shadow-lg hover:shadow-xl transition-all duration-300 group-hover:translate-y-[-2px]`}
                       size="lg"
                     >
                       View Plans

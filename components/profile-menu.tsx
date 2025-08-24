@@ -58,7 +58,7 @@ export default function ProfileMenu({
           <Profile user={user} />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end" forceMount>
+      <DropdownMenuContent className="w-56 rounded-xs" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">{user.username}</p>
@@ -71,17 +71,17 @@ export default function ProfileMenu({
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem onClick={() => handleItemClick("/dashboard")}>
+        <DropdownMenuItem className="rounded-xs" onClick={() => handleItemClick("/dashboard")}>
           <LayoutDashboard className="mr-2 h-4 w-4" />
           <span>Dashboard</span>
         </DropdownMenuItem>
 
-        <DropdownMenuItem onClick={() => handleItemClick("/profile")}>
+        <DropdownMenuItem className="rounded-xs" onClick={() => handleItemClick("/profile")}>
           <User className="mr-2 h-4 w-4" />
           <span>Profile</span>
         </DropdownMenuItem>
 
-        <DropdownMenuItem onClick={() => handleItemClick("/settings")}>
+        <DropdownMenuItem className="rounded-xs" onClick={() => handleItemClick("/settings")}>
           <Settings className="mr-2 h-4 w-4" />
           <span>Settings</span>
         </DropdownMenuItem>
@@ -89,13 +89,13 @@ export default function ProfileMenu({
         <DropdownMenuSeparator />
 
         {user.isAdmin === 1 && (
-          <DropdownMenuItem onClick={() => handleItemClick("/admin")}>
+          <DropdownMenuItem className="rounded-xs" onClick={() => handleItemClick("/admin")}>
             <Shield className="mr-2 h-4 w-4" />
             <span>Admin Panel</span>
           </DropdownMenuItem>
         )}
 
-        <DropdownMenuItem onClick={() => handleItemClick("/help")}>
+        <DropdownMenuItem className="rounded-xs" onClick={() => handleItemClick("/help")}>
           <HelpCircle className="mr-2 h-4 w-4" />
           <span>Help & Support</span>
         </DropdownMenuItem>
@@ -104,7 +104,7 @@ export default function ProfileMenu({
 
         <DropdownMenuItem
           onClick={handleLogout}
-          className="text-red-600 focus:text-red-600"
+          className="text-red-600 focus:text-red-600 rounded-xs"
         >
           <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>

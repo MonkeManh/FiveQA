@@ -16,10 +16,10 @@ export default async function Navbar({ transparent = false }: INavbarProps) {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full border-b shadow-xl ${
+      className={`top-0 z-50 w-full border-b shadow-xl ${
         transparent
-          ? "bg-background/100"
-          : "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+          ? "bg-background/100 fixed"
+          : "sticky bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
       }`}
     >
       <div className="w-full flex justify-center">

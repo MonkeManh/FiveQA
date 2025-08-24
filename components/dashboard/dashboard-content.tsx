@@ -217,7 +217,7 @@ export default function DashboardContent({ user }: IDashboardContentProps) {
     <div className="flex justify-center">
       <div className="min-h-screen container p-6">
         <div className="x-auto space-y-6">
-          <div className="bg-secondary rounded-lg shadow-sm border p-6">
+          <div className="bg-secondary rounded-xs shadow-sm border p-6">
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-2xl font-bold text-primary">
@@ -226,24 +226,24 @@ export default function DashboardContent({ user }: IDashboardContentProps) {
               </div>
               <div className="flex items-center gap-2">
                 <Button
-                  className="cursor-pointer"
+                  className="cursor-pointer rounded-xs"
                   variant="destructive"
                   onClick={() => handleStartDispatching()}
                 >
                   Start Dispatching
                 </Button>
                 <Select value={dashboard} onValueChange={setDashboard}>
-                  <SelectTrigger>
+                  <SelectTrigger className="rounded-xs">
                     <SelectValue placeholder="Select Dashboard" />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="user">User</SelectItem>
-                    <SelectItem value="ems">EMS</SelectItem>
-                    <SelectItem value="fire">Fire</SelectItem>
-                    <SelectItem value="police">Police</SelectItem>
-                    <SelectItem value="total">Total</SelectItem>
+                  <SelectContent className="rounded-xs">
+                    <SelectItem value="user" className="rounded-xs">User</SelectItem>
+                    <SelectItem value="ems" className="rounded-xs">EMS</SelectItem>
+                    <SelectItem value="fire" className="rounded-xs">Fire</SelectItem>
+                    <SelectItem value="police" className="rounded-xs">Police</SelectItem>
+                    <SelectItem value="total" className="rounded-xs">Total</SelectItem>
                     {user.isAdmin === 1 && (
-                      <SelectItem value="admin">Admin</SelectItem>
+                      <SelectItem value="admin" className="rounded-xs">Admin</SelectItem>
                     )}
                   </SelectContent>
                 </Select>
@@ -259,7 +259,7 @@ export default function DashboardContent({ user }: IDashboardContentProps) {
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {data.cards.map((card, index) => (
-                  <Card key={index}>
+                  <Card key={index} className="rounded-xs">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0">
                       <CardTitle className="text-sm font-medium">
                         {card.title}
@@ -277,7 +277,7 @@ export default function DashboardContent({ user }: IDashboardContentProps) {
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Service Distribution Chart */}
-                <Card>
+                <Card className="rounded-xs">
                   <CardHeader>
                     <CardTitle>{data.pieChart.title}</CardTitle>
                     <CardDescription>
@@ -332,7 +332,7 @@ export default function DashboardContent({ user }: IDashboardContentProps) {
                 </Card>
 
                 {/* Usage Over Time Chart */}
-                <Card>
+                <Card className="rounded-xs">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div>
@@ -349,6 +349,7 @@ export default function DashboardContent({ user }: IDashboardContentProps) {
                               selectedPeriod === filter ? "default" : "outline"
                             }
                             size="sm"
+                            className="rounded-xs"
                             onClick={() => setSelectedPeriod(filter)}
                           >
                             {filter}
@@ -430,7 +431,7 @@ export default function DashboardContent({ user }: IDashboardContentProps) {
               </div>
 
               {/* Recent Calls Table */}
-              <Card>
+              <Card className="rounded-xs">
                 <CardHeader>
                   <CardTitle>{data.table.title}</CardTitle>
                   <CardDescription>{data.table.subTitle}</CardDescription>
@@ -470,6 +471,7 @@ export default function DashboardContent({ user }: IDashboardContentProps) {
                                     ? "destructive"
                                     : "secondary"
                               }
+                              className="rounded-xs"
                             >
                               {call.status === "Completed" ? (
                                 <CheckCircle className="w-3 h-3 mr-1" />
@@ -492,7 +494,7 @@ export default function DashboardContent({ user }: IDashboardContentProps) {
               {/* Bottom Section Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {getBottomSectionData().map((section, index) => (
-                  <Card key={index}>
+                  <Card key={index} className="rounded-xs">
                     <CardHeader>
                       <CardTitle className="text-lg">{section.title}</CardTitle>
                     </CardHeader>
