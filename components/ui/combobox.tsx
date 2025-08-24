@@ -217,7 +217,7 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
                         }
                         onSelect={() => handleSelect(subOption.value)}
                         className={`${smallRounded ? "rounded-xs" : ""} ${cn(
-                          "cursor-pointer pl-6",
+                          "cursor-pointer pl-6 text-blue-500",
                           subOption.className
                         )}`}
                       >

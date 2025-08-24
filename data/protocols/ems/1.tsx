@@ -219,7 +219,7 @@ export const ABDO_PN: IEMSProtocol = {
           display: "Unk if diagnosed aortic aneurysm",
           answerDisplay: (
             <p className="text-green-400">
-              Unknown if **pronoun** has a diagnosed aoritc aneurysm
+              Unknown if **pronoun** has a diagnosed aortic aneurysm
             </p>
           ),
           continue: true,
@@ -469,7 +469,7 @@ export const ABDO_PN: IEMSProtocol = {
           code: "01C00",
           text: (
             <p className="text-blue-500">
-              <b className="font-bold">Override</b> (charlie)
+              <b className="font-bold">Override</b>
             </p>
           ),
           recResponse: 3,
@@ -503,7 +503,7 @@ export const ABDO_PN: IEMSProtocol = {
           text: (
             <p>
               <b className="font-bold">Fainting</b> or{" "}
-              <b className="font-bold">near fainting</b> &gt;= 50
+              <b className="font-bold">near fainting</b> &gt;=50
             </p>
           ),
           recResponse: 3,
@@ -526,7 +526,7 @@ export const ABDO_PN: IEMSProtocol = {
           text: (
             <p>
               <b className="font-bold">Males</b> with{" "}
-              <b className="font-bold">pain above navel</b> &gt;= 35
+              <b className="font-bold">pain above navel</b> &gt;=35
             </p>
           ),
           recResponse: 2,
@@ -537,7 +537,7 @@ export const ABDO_PN: IEMSProtocol = {
           text: (
             <p>
               <b className="font-bold">Females</b> with{" "}
-              <b className="font-bold">pain above navel</b> &gt;= 45
+              <b className="font-bold">pain above navel</b> &gt;=45
             </p>
           ),
           recResponse: 2,
@@ -552,7 +552,7 @@ export const ABDO_PN: IEMSProtocol = {
           code: "01D00",
           text: (
             <p className="text-blue-500">
-              <b className="font-bold">Override</b> (delta)
+              <b className="font-bold">Override</b>
             </p>
           ),
           recResponse: 3,
@@ -573,7 +573,7 @@ export const ABDO_PN: IEMSProtocol = {
           text: (
             <p>
               <b className="font-bold">Ashen</b> or{" "}
-              <b className="font-bold">gray</b> color reported &gt;= 50
+              <b className="font-bold">gray</b> color reported &gt;=50
             </p>
           ),
           recResponse: 3,

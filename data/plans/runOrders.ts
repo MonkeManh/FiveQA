@@ -1663,4 +1663,18 @@ export const ResponseOrders = {
     EFireStations.Station11,
     EFireStations.Station12,
   ],
+  "5_6_10_7_8_1_2_9_4_3_11_12": [
+    EFireStations.Station5,
+    EFireStations.Station6,
+    EFireStations.Station10,
+    EFireStations.Station7,
+    EFireStations.Station8,
+    EFireStations.Station1,
+    EFireStations.Station2,
+    EFireStations.Station9,
+    EFireStations.Station4,
+    EFireStations.Station3,
+    EFireStations.Station11,
+    EFireStations.Station12,
+  ],
 };

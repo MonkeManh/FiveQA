@@ -20,7 +20,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen flex flex-col">
       <div className="mb-auto">
-        <Navbar />
+        <Navbar transparent />
       </div>
 
       <Hero />

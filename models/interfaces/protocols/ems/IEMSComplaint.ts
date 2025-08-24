@@ -16,6 +16,7 @@ export interface IEMSProtocol {
   preSend?: boolean;
   availableTracks?: {
     protocol: number;
+    name: string;
   }[];
   questions: IEMSQuestion[];
   information: ReactNode;

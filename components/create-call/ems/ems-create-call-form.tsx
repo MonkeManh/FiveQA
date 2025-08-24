@@ -32,6 +32,7 @@ import {
 import LoadingState from "@/components/loading-state";
 import {
   evaluateEMSDependency,
+  getBestCode,
   getPronoun,
   getPronoun2,
   isHigherPriority,
@@ -175,10 +176,12 @@ export default function EMSCreateCallForm() {
         );
         if (depResult) {
           if (depResult.pushCodes) {
-            const newCodes = Array.isArray(depResult.pushCodes) 
-              ? depResult.pushCodes.filter(code => !prev.codes.selectable_codes.includes(code))
+            const newCodes = Array.isArray(depResult.pushCodes)
+              ? depResult.pushCodes.filter(
+                  (code) => !prev.codes.selectable_codes.includes(code)
+                )
               : [];
-              
+
             setEMSCase((prevCase) => ({
               ...prevCase,
               codes: {
@@ -205,35 +208,33 @@ export default function EMSCreateCallForm() {
                 },
               })
             );
+          }
 
-            if (
-              depResult.send &&
-              (!emsCase.codes.selected_code ||
-                isHigherPriority(
-                  emsCase.codes.selected_code,
-                  depResult.pushCodes[0]
-                ))
-            ) {
-              setCodeSendingNow(depResult.pushCodes[0]);
-              setActiveTab("send");
-            }
+          if (
+            depResult.send &&
+            !emsCase.codes.selected_code &&
+            getBestCode(emsCase.codes.selectable_codes, protocol) !== null
+          ) {
+            setCodeSendingNow(
+              getBestCode(emsCase.codes.selectable_codes, protocol)
+            );
+            setActiveTab("send");
           }
         }
       }
 
       if (answer.pushCodes) {
         const newCodes = Array.isArray(answer.pushCodes)
-          ? answer.pushCodes.filter(code => !prev.codes.selectable_codes.includes(code))
+          ? answer.pushCodes.filter(
+              (code) => !prev.codes.selectable_codes.includes(code)
+            )
           : [];
-          
+
         setEMSCase((prevCase) => ({
           ...prevCase,
           codes: {
             ...prevCase.codes,
-            selectable_codes: [
-              ...prevCase.codes.selectable_codes,
-              ...newCodes,
-            ],
+            selectable_codes: [...prevCase.codes.selectable_codes, ...newCodes],
           },
         }));
         localStorage.setItem(
@@ -252,15 +253,18 @@ export default function EMSCreateCallForm() {
             },
           })
         );
+      }
 
-        if (
-          answer.send &&
-          (!emsCase.codes.selected_code ||
-            isHigherPriority(emsCase.codes.selected_code, answer.pushCodes[0]))
-        ) {
-          setCodeSendingNow(answer.pushCodes[0]);
-          setActiveTab("send");
-        }
+      if (
+        answer.send &&
+        !emsCase.codes.selected_code &&
+        getBestCode(emsCase.codes.selectable_codes, protocol) !== null
+      ) {
+        alert("Auto-navigating to Send tab based on answer");
+        setCodeSendingNow(
+          getBestCode(emsCase.codes.selectable_codes, protocol)
+        );
+        setActiveTab("send");
       }
 
       if (answer.pushSuffix) {

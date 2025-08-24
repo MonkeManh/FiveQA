@@ -8,6 +8,7 @@ import {
   ALS2_HELO,
   ALS2_PD,
   BLS,
+  BLS1,
   BLSU,
   E_T,
   MLTP,
@@ -2252,4 +2253,22 @@ export const emsPlans: IEMSResponsePlan[] = [
     name: "CRITTRANSPORT|ALS1",
     units: ACLS,
   },
+  {
+    id: 204,
+    incidentType: "BLS1",
+    name: "FALL|LIFT|BLS",
+    units: BLS1,
+  },
+  {
+    id: 205,
+    incidentType: "ALS1",
+    name: "FALL|LIFT|ALS1",
+    units: ALS1
+  },
+  {
+    id: 206,
+    incidentType: "ALS2",
+    name: "FALL|LIFT|ALS2",
+    units: ALS2_HELO
+  }
 ];

@@ -1050,7 +1050,7 @@ export const ANIMAL_BITE: IEMSProtocol = {
           code: "03A03",
           text: (
             <p>
-              <b className="font-bold">NON-RECENT</b> (&gt;= 6hrs) injuries (
+              <b className="font-bold">NON-RECENT</b> (&gt;=6hrs) injuries (
               <b className="font-bold">without</b> priority symptoms)
             </p>
           ),
@@ -1076,7 +1076,7 @@ export const ANIMAL_BITE: IEMSProtocol = {
           code: "03B00",
           text: (
             <p className="text-blue-500">
-              <b className="font-bold">Override</b> (bravo)
+              <b className="font-bold">Override</b>
             </p>
           ),
           recResponse: 9,
@@ -1123,7 +1123,7 @@ export const ANIMAL_BITE: IEMSProtocol = {
           code: "03D00",
           text: (
             <p className="text-blue-500">
-              <b className="font-bold">Override</b> (delta)
+              <b className="font-bold">Override</b>
             </p>
           ),
           recResponse: 11,

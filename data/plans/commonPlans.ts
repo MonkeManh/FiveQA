@@ -32,6 +32,17 @@ export const BLSU: IRPUnit[] = [
   },
 ];
 
+export const BLS1: IRPUnit[] = [
+  {
+    type: "Engine",
+    quantity: 1,
+  },
+  {
+    type: "Transport (BLS)",
+    quantity: 1,
+  },
+]
+
 export const ALS1: IRPUnit[] = [
   {
     type: "Engine",

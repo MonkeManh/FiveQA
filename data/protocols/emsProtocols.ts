@@ -1,8 +1,40 @@
 import { IEMSProtocol } from "@/models/interfaces";
-import { ABDO_PN } from "./ems/1";
-import { ALLERGIES } from "./ems/2";
-import { ANIMAL_BITE } from "./ems/3";
-import { ASSAULT } from "./ems/4";
+import {
+  ABDO_PN,
+  ALLERGIES,
+  ANIMAL_BITE,
+  ASSAULT,
+  BACK_PAIN,
+  BREATHING_PROB,
+  BURNS_EXPLOSION,
+  CARB_MONO_HAZ,
+  CARDIAC_ARREST,
+  CHEST_PAIN,
+  CHOKING,
+  SEIZURES,
+  DIABETIC_PROB,
+  DROWNING,
+  ELECTROCUTION_LIGHTNING,
+  EYE_PROBLEMS,
+  FALLS,
+  HEADACHE,
+  HEART_PROBLEMS,
+  HEAT_COLD_EXPOSURE,
+  HEM_LAC,
+  INACCESS_ENTRAP,
+  OVERDOSE_POISONING,
+  PREGNANCY_CHILD_BIRTH,
+  PSYCH_ABN_BEH,
+  SICK_PERSON,
+  SHOT_STAB_TRAUMA,
+  STROKE,
+  TRAFFIC_INCIDENTS,
+  TRAUMATIC_INJS,
+  UNCO_FAINTING,
+  UNKN_PROBLEM,
+  TRANSFER,
+  CRASH_NOTI,
+} from "./ems";
 
 export function getEMSProtocols() {
   return emsProtocols.map((c) => ({
@@ -10,7 +42,7 @@ export function getEMSProtocols() {
     label: c.name,
     subOptions: c.availableTracks?.map((t) => ({
       value: t.protocol,
-      label: c.name,
+      label: t.name,
     })),
   }));
 }
@@ -20,4 +52,34 @@ export const emsProtocols: IEMSProtocol[] = [
   ALLERGIES,
   ANIMAL_BITE,
   ASSAULT,
+  BACK_PAIN,
+  BREATHING_PROB,
+  BURNS_EXPLOSION,
+  CARB_MONO_HAZ,
+  CARDIAC_ARREST,
+  CHEST_PAIN,
+  CHOKING,
+  SEIZURES,
+  DIABETIC_PROB,
+  DROWNING,
+  ELECTROCUTION_LIGHTNING,
+  EYE_PROBLEMS,
+  FALLS,
+  HEADACHE,
+  HEART_PROBLEMS,
+  HEAT_COLD_EXPOSURE,
+  HEM_LAC,
+  INACCESS_ENTRAP,
+  OVERDOSE_POISONING,
+  PREGNANCY_CHILD_BIRTH,
+  PSYCH_ABN_BEH,
+  SICK_PERSON,
+  SHOT_STAB_TRAUMA,
+  STROKE,
+  TRAFFIC_INCIDENTS,
+  TRAUMATIC_INJS,
+  UNCO_FAINTING,
+  UNKN_PROBLEM,
+  TRANSFER,
+  CRASH_NOTI,
 ];

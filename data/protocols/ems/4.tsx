@@ -34,19 +34,19 @@ export const ASSAULT: IEMSProtocol = {
           suffixes: [
             {
               suffix: "A",
-              text: "Assault",
+              text: <p>Assault</p>,
               recResponse: 14,
               priority: 0,
             },
             {
               suffix: "S",
-              text: "Sexual Assault",
+              text: <p>Sexual assault</p>,
               recResponse: 14,
               priority: 0,
             },
             {
               suffix: "T",
-              text: "Stun Gun",
+              text: <p>Stun gun</p>,
               recResponse: 14,
               priority: 0,
             },
@@ -64,19 +64,19 @@ export const ASSAULT: IEMSProtocol = {
           suffixes: [
             {
               suffix: "A",
-              text: "Assault",
+              text: <p>Assault</p>,
               recResponse: 14,
               priority: 0,
             },
             {
               suffix: "S",
-              text: "Sexual Assault",
+              text: <p>Sexual assault</p>,
               recResponse: 14,
               priority: 0,
             },
             {
               suffix: "T",
-              text: "Stun Gun",
+              text: <p>Stun gun</p>,
               recResponse: 14,
               priority: 0,
             },
@@ -86,7 +86,7 @@ export const ASSAULT: IEMSProtocol = {
           code: "04A03",
           text: (
             <p>
-              <b className="font-bold">NON-RECENT</b> (&gt;= 6hrs) injuries{" "}
+              <b className="font-bold">NON-RECENT</b> (&gt;=6hrs) injuries{" "}
               <span className="text-sm">
                 (<b className="font-bold">without</b> priority symptoms)
               </span>
@@ -97,19 +97,19 @@ export const ASSAULT: IEMSProtocol = {
           suffixes: [
             {
               suffix: "A",
-              text: "Assault",
+              text: <p>Assault</p>,
               recResponse: 15,
               priority: 0,
             },
             {
               suffix: "S",
-              text: "Sexual Assault",
+              text: <p>Sexual assault</p>,
               recResponse: 15,
               priority: 0,
             },
             {
               suffix: "T",
-              text: "Stun Gun",
+              text: <p>Stun gun</p>,
               recResponse: 15,
               priority: 0,
             },
@@ -124,7 +124,7 @@ export const ASSAULT: IEMSProtocol = {
           code: "04B00",
           text: (
             <p className="text-blue-500">
-              <b className="font-bold">Override</b> (bravo)
+              <b className="font-bold">Override</b>
             </p>
           ),
           recResponse: 14,
@@ -132,19 +132,19 @@ export const ASSAULT: IEMSProtocol = {
           suffixes: [
             {
               suffix: "A",
-              text: "Assault",
+              text: <p>Assault</p>,
               recResponse: 14,
               priority: 0,
             },
             {
               suffix: "S",
-              text: "Sexual Assault",
+              text: <p>Sexual assault</p>,
               recResponse: 14,
               priority: 0,
             },
             {
               suffix: "T",
-              text: "Stun Gun",
+              text: <p>Stun gun</p>,
               recResponse: 14,
               priority: 0,
             },
@@ -162,19 +162,19 @@ export const ASSAULT: IEMSProtocol = {
           suffixes: [
             {
               suffix: "A",
-              text: "Assault",
+              text: <p>Assault</p>,
               recResponse: 14,
               priority: 0,
             },
             {
               suffix: "S",
-              text: "Sexual Assault",
+              text: <p>Sexual assault</p>,
               recResponse: 14,
               priority: 0,
             },
             {
               suffix: "T",
-              text: "Stun Gun",
+              text: <p>Stun gun</p>,
               recResponse: 14,
               priority: 0,
             },
@@ -192,19 +192,19 @@ export const ASSAULT: IEMSProtocol = {
           suffixes: [
             {
               suffix: "A",
-              text: "Assault",
+              text: <p>Assault</p>,
               recResponse: 14,
               priority: 0,
             },
             {
               suffix: "S",
-              text: "Sexual Assault",
+              text: <p>Sexual assault</p>,
               recResponse: 14,
               priority: 0,
             },
             {
               suffix: "T",
-              text: "Stun Gun",
+              text: <p>Stun gun</p>,
               recResponse: 14,
               priority: 0,
             },
@@ -224,19 +224,19 @@ export const ASSAULT: IEMSProtocol = {
           suffixes: [
             {
               suffix: "A",
-              text: "Assault",
+              text: <p>Assault</p>,
               recResponse: 14,
               priority: 0,
             },
             {
               suffix: "S",
-              text: "Sexual Assault",
+              text: <p>Sexual assault</p>,
               recResponse: 14,
               priority: 0,
             },
             {
               suffix: "T",
-              text: "Stun Gun",
+              text: <p>Stun gun</p>,
               recResponse: 14,
               priority: 0,
             },
@@ -251,7 +251,7 @@ export const ASSAULT: IEMSProtocol = {
           code: "04D00",
           text: (
             <p className="text-blue-500">
-              <b className="font-bold">ALS Override</b> (delta)
+              <b className="font-bold">Override</b>
             </p>
           ),
           recResponse: 16,
@@ -259,19 +259,19 @@ export const ASSAULT: IEMSProtocol = {
           suffixes: [
             {
               suffix: "A",
-              text: "Assault",
+              text: <p>Assault</p>,
               recResponse: 16,
               priority: 0,
             },
             {
               suffix: "S",
-              text: "Sexual Assault",
+              text: <p>Sexual assault</p>,
               recResponse: 16,
               priority: 0,
             },
             {
               suffix: "T",
-              text: "Stun Gun",
+              text: <p>Stun gun</p>,
               recResponse: 16,
               priority: 0,
             },
@@ -286,19 +286,19 @@ export const ASSAULT: IEMSProtocol = {
           suffixes: [
             {
               suffix: "A",
-              text: "Assault",
+              text: <p>Assault</p>,
               recResponse: 17,
               priority: 0,
             },
             {
               suffix: "S",
-              text: "Sexual Assault",
+              text: <p>Sexual assault</p>,
               recResponse: 17,
               priority: 0,
             },
             {
               suffix: "T",
-              text: "Stun Gun",
+              text: <p>Stun gun</p>,
               recResponse: 17,
               priority: 0,
             },
@@ -313,19 +313,19 @@ export const ASSAULT: IEMSProtocol = {
           suffixes: [
             {
               suffix: "A",
-              text: "Assault",
+              text: <p>Assault</p>,
               recResponse: 18,
               priority: 0,
             },
             {
               suffix: "S",
-              text: "Sexual Assault",
+              text: <p>Sexual assault</p>,
               recResponse: 18,
               priority: 0,
             },
             {
               suffix: "T",
-              text: "Stun Gun",
+              text: <p>Stun gun</p>,
               recResponse: 18,
               priority: 0,
             },
@@ -343,19 +343,19 @@ export const ASSAULT: IEMSProtocol = {
           suffixes: [
             {
               suffix: "A",
-              text: "Assault",
+              text: <p>Assault</p>,
               recResponse: 16,
               priority: 0,
             },
             {
               suffix: "S",
-              text: "Sexual Assault",
+              text: <p>Sexual assault</p>,
               recResponse: 16,
               priority: 0,
             },
             {
               suffix: "T",
-              text: "Stun Gun",
+              text: <p>Stun gun</p>,
               recResponse: 16,
               priority: 0,
             },
@@ -365,7 +365,7 @@ export const ASSAULT: IEMSProtocol = {
           code: "04D04",
           text: (
             <p>
-              <b className="font-bold">Chest/Neck/Head</b> injry{" "}
+              <b className="font-bold">Chest/Neck/Head</b> injury{" "}
               <span className="text-sm">
                 (with <b className="font-bold">difficulty</b> breathing)
               </span>
@@ -376,19 +376,19 @@ export const ASSAULT: IEMSProtocol = {
           suffixes: [
             {
               suffix: "A",
-              text: "Assault",
+              text: <p>Assault</p>,
               recResponse: 16,
               priority: 0,
             },
             {
               suffix: "S",
-              text: "Sexual Assault",
+              text: <p>Sexual assault</p>,
               recResponse: 16,
               priority: 0,
             },
             {
               suffix: "T",
-              text: "Stun Gun",
+              text: <p>Stun gun</p>,
               recResponse: 16,
               priority: 0,
             },
@@ -407,19 +407,19 @@ export const ASSAULT: IEMSProtocol = {
           suffixes: [
             {
               suffix: "A",
-              text: "Assault",
+              text: <p>Assault</p>,
               recResponse: 19,
               priority: 0,
             },
             {
               suffix: "S",
-              text: "Sexual Assault",
+              text: <p>Sexual assault</p>,
               recResponse: 19,
               priority: 0,
             },
             {
               suffix: "T",
-              text: "Stun Gun",
+              text: <p>Stun gun</p>,
               recResponse: 19,
               priority: 0,
             },

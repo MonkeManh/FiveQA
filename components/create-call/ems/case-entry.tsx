@@ -122,6 +122,7 @@ export default function EMSCaseEntry({
     return allComplaints.map((c) => ({
       value: c.value,
       label: c.label,
+      subOptions: c.subOptions,
     }));
   }, [emsCase.case_entry.patient.breathing, emsCase.case_entry.patient.consciousness])
 
@@ -1314,7 +1315,7 @@ export default function EMSCaseEntry({
           </Label>
         </div>
         <div className="col-span-3 grid grid-cols-5 items-center gap-20">
-          <div className="w-full col-span-3">
+          <div className="w-full col-span-4">
             <Combobox
               options={sortedComplaintOptions}
               value={emsCase?.case_entry?.chief_complaint || emsCase?.case_entry?.initial_complaint || ""}
@@ -1343,7 +1344,6 @@ export default function EMSCaseEntry({
               disabled={!canEditChiefComplaint}
             />
           </div>
-          <div></div>
           <Button
             ref={nextButtonRef}
             variant="outline"

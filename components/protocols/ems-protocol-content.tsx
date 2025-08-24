@@ -19,10 +19,10 @@ type PriorityLetter = "O" | "A" | "B" | "C" | "D" | "E";
 type ServicePriority = boolean | PriorityLetter | undefined;
 
 const priorityColors: Record<PriorityLetter, string> = {
-  O: "bg-muted text-foreground",
+  O: "bg-muted text-white",
   A: "bg-green-600 text-white",
   B: "bg-blue-600 text-white",
-  C: "bg-yellow-500 text-white",
+  C: "bg-yellow-500 text-black",
   D: "bg-red-500 text-white",
   E: "bg-purple-600 text-white",
 };

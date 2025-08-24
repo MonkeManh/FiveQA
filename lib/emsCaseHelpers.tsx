@@ -1,4 +1,4 @@
-import { IEMSCase } from "@/models/interfaces";
+import { IEMSCase, IEMSProtocol } from "@/models/interfaces";
 import { IDependencyResult } from "@/models/interfaces/protocols/ems/IEMSAnswer";
 import { IPatient } from "@/models/interfaces/protocols/ems/IPatient";
 
@@ -154,6 +154,8 @@ export const getHelpContent = (field: string) => {
   );
 };
 
+type PriorityLetter = "O" | "A" | "B" | "C" | "D" | "E";
+
 export const formatElapsedTime = (startTime: string): string => {
   if (!startTime) return "00:00";
 
@@ -249,6 +251,9 @@ export function isSameOrHigherPriority(
   return rank(m2[1]) >= rank(m1[1]);
 }
 
+const rankPriority = (letter: string): number =>
+  "OABCDE".indexOf(letter.toUpperCase());
+
 export function isHigherPriority(
   baseCode: string,
   compareCode: string
@@ -263,3 +268,53 @@ export function isHigherPriority(
   const rank = (letter: string) => "OABCDE".indexOf(letter.toUpperCase());
   return rank(m2[1]) > rank(m1[1]);
 }
+
+export const getBestCode = (
+  codes: string[],
+  protocol: IEMSProtocol
+): string | null => {
+  if (!codes?.length || !protocol?.determinants?.length) return null;
+
+  // Build a quick lookup: code -> { letter, numPriority }
+  const lookup = new Map<string, { letter: PriorityLetter; num: number }>();
+
+  for (const det of protocol.determinants) {
+    for (const c of det.codes) {
+      // If duplicates ever exist in data, keep the highest numeric priority.
+      const existing = lookup.get(c.code);
+      if (
+        !existing ||
+        c.priority > existing.num ||
+        (c.priority === existing.num &&
+          rankPriority(det.priority) > rankPriority(existing.letter))
+      ) {
+        lookup.set(c.code, { letter: det.priority, num: c.priority });
+      }
+    }
+  }
+
+  let best: { code: string; letter: PriorityLetter; num: number } | null = null;
+
+  for (const code of codes) {
+    const info = lookup.get(code);
+    if (!info) continue; // ignore codes not found in the protocol
+
+    if (!best) {
+      best = { code, letter: info.letter, num: info.num };
+      continue;
+    }
+
+    const currRank = rankPriority(info.letter);
+    const bestRank = rankPriority(best.letter);
+
+    if (
+      currRank > bestRank || // better letter
+      (currRank === bestRank && info.num > best.num) // higher numeric
+      // if tie on both, keep the earlier (stable, deterministic)
+    ) {
+      best = { code, letter: info.letter, num: info.num };
+    }
+  }
+
+  return best ? best.code : null;
+};

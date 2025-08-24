@@ -8115,8 +8115,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.LSPD_LCSO_SAHP_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area4,
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Chum St Ramp to SB Abbatoir Ave",
@@ -8162,8 +8162,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.LSPD_LCSO_SAHP_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area4,
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Del Soleo Hwy",
@@ -8209,8 +8209,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.SAHP_RCSO_MBPD_BCSO_PBPD_SSPD_LCSO_LSPD,
         post: EHPPosts.North,
         patrolArea: EPatrolAreas.Area7,
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Interstate 2 Fwy (EB Del Perro Fwy)",
@@ -8256,9 +8256,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area3,
-
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Interstate 2 Fwy Ramp to EB Equality Way",
@@ -8290,8 +8289,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area2,
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Interstate 2 Fwy Ramp to Elgin Ave",
@@ -8323,8 +8322,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area1,
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Interstate 2 Fwy Ramp to NB Route 15 Fwy",
@@ -8356,8 +8355,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area3,
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Interstate 2 Fwy Ramp to Route 16",
@@ -8389,8 +8388,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area2,
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Interstate 2 Fwy Ramp to San Andreas Ave",
@@ -8422,8 +8421,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.LSPD_LCSO_SAHP_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area1,
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Interstate 2 Fwy Ramp to SB Interstate 5 Fwy",
@@ -8455,8 +8454,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area2,
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Interstate 2 Fwy Ramp to WB Interstate 4 Fwy",
@@ -8488,8 +8487,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area3,
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Interstate 4 Fwy (EB Olympic Fwy)",
@@ -8507,8 +8506,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area3,
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Interstate 4 Ramp to Elgin Ave",
@@ -8540,8 +8539,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.LSPD_LCSO_SAHP_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area3,
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Interstate 4 Fwy Ramp to WB Interstate 2 Fwy",
@@ -8573,8 +8572,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area3,
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Interstate 4 Fwy Ramp to WB Route 20 Fwy",
@@ -8606,8 +8605,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area3,
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Interstate 4 Fwy Ramp to Route 17",
@@ -8639,8 +8638,8 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area3,
-      }
-    ]
+      },
+    ],
   },
   {
     name: "EB Route 17 (EB Boulevard Del Perro)",
@@ -8700,7 +8699,102 @@ export const streets: IStreets[] = [
         pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
         post: EHPPosts.South,
         patrolArea: EPatrolAreas.Area2,
+      },
+    ],
+  },
+  {
+    name: "EB Route 19 (EB Davis Ave)",
+    crossingStreets: [
+      {
+        street: "EB Route 22 Ramp to EB Route 19",
+        postal: ["869"],
+        twp: "Los Santos City",
+        municp: "City",
+        hasHeli: false,
+        fireBox: "5-100",
+        fdDistrict: EFireStations.Station5,
+        fdRunOrder: ResponseOrders["5_6_10_7_8_1_2_9_4_3_11_12"],
+        pdDistrict: EPDAgencies.SAHP,
+        pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
+        post: EHPPosts.South,
+        patrolArea: EPatrolAreas.Area3,
+      },
+      {
+        street: "WB Route 22 Ramp to WB Route 19",
+        postal: ["869"],
+        twp: "Los Santos City",
+        municp: "City",
+        hasHeli: false,
+        fireBox: "5-100",
+        fdDistrict: EFireStations.Station6,
+        fdRunOrder: ResponseOrders["6_5_10_7_8_1_2_9_4_3_11_12"],
+        pdDistrict: EPDAgencies.SAHP,
+        pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
+        post: EHPPosts.South,
+        patrolArea: EPatrolAreas.Area3,
       }
+    ],
+  },
+  {
+    name: "EB Route 20 Fwy (EB Elysian Fields Fwy)",
+    crossingStreets: [
+      {
+        street: "El Burro Blvd",
+        postal: ["788"],
+        twp: "Los Santos City",
+        municp: "City",
+        hasHeli: false,
+        fireBox: "7-214",
+        fdDistrict: EFireStations.Station7,
+        fdRunOrder: ResponseOrders["7_6_5_10_1_8_2_9_4_3_11_12"],
+        pdDistrict: EPDAgencies.SAHP,
+        pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
+        post: EHPPosts.South,
+        patrolArea: EPatrolAreas.Area3,
+      },
+      {
+        street: "Route 18 (El Rancho Blvd)",
+        postal: ["790"],
+        twp: "Los Santos City",
+        municp: "City",
+        hasHeli: false,
+        fireBox: "7-214",
+        fdDistrict: EFireStations.Station7,
+        fdRunOrder: ResponseOrders["7_6_10_5_1_8_9_2_4_3_11_12"],
+        pdDistrict: EPDAgencies.SAHP,
+        pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
+        post: EHPPosts.South,
+        patrolArea: EPatrolAreas.Area3,
+      },
+      {
+        street: "EB Route 20 Fwy Ramp to Labor Pl",
+        postal: ["791"],
+        twp: "Los Santos City",
+        municp: "City",
+        hasHeli: false,
+        fireBox: "7-1",
+        fdDistrict: EFireStations.Station7,
+        fdRunOrder: ResponseOrders["7_6_10_5_1_8_9_2_4_3_11_12"],
+        pdDistrict: EPDAgencies.SAHP,
+        pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
+        post: EHPPosts.South,
+        patrolArea: EPatrolAreas.Area3,
+      },
+      {
+        street: "Voodoo Pl",
+        postal: ["925"],
+        twp: "Los Santos City",
+        municp: "City",
+        hasHeli: false,
+        fireBox: "6-900",
+        fdDistrict: EFireStations.Station6,
+        fdRunOrder: ResponseOrders["6_7_10_5_8_1_2_9_4_3_11_12"],
+        pdDistrict: EPDAgencies.SAHP,
+        pdRunOrder: ResponseOrders.SAHP_LSPD_LCSO_BCSO_SSPD_PBPD_RCSO_MBPD,
+        post: EHPPosts.South,
+        patrolArea: EPatrolAreas.Area4,
+      },
+
     ]
   }
 ];

@@ -1,10 +1,21 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
+    <section className="w-full h-screen relative overflow-hidden flex items-center justify-center">
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/Dispatch.png"
@@ -16,7 +27,13 @@ export default function Hero() {
         />
       </div>
 
-      <div className="flex justify-center px-4 md:px-6 relative z-20">
+      <div
+        className="flex justify-center px-4 md:px-6 relative z-20 transition-all duration-700 ease-out"
+        style={{
+          transform: `translateY(${scrollY * 0.3}px)`,
+          opacity: Math.max(0, 1 - scrollY / 400),
+        }}
+      >
         <div className="container flex flex-col items-center gap-4 text-center text-white">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
             FiveQA
@@ -44,6 +61,15 @@ export default function Hero() {
               </Link>
             </Button>
           </div>
+        </div>
+      </div>
+
+      <div
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+        style={{ opacity: Math.max(0, 1 - scrollY / 200) }}
+      >
+        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </section>

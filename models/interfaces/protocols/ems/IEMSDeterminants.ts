@@ -12,12 +12,13 @@ export interface IEMSCodes {
   recResponse: number;
   notBreathing?: boolean;
   uncertainBreathing?: boolean;
+  agonalBreathing?: boolean;
   notConscious?: boolean;
   multPatient?: boolean;
   priority: number;
   suffixes?: {
     suffix: string;
-    text: string;
+    text: ReactNode;
     recResponse?: number;
     priority: number;
   }[];
