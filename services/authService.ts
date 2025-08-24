@@ -8,19 +8,15 @@ export async function getServerUser(): Promise<IUser | null> {
     const cookieStore = await cookies();
     const accessToken = cookieStore.get("access_token")?.value;
 
-    if (!accessToken) {
-      return null;
-    }
+    if (!accessToken) return null;
 
     const isValid = await TokenService.isValidAccessToken(accessToken);
-    if (!isValid) {
-      return null;
-    }
+    if (!isValid) return null;
 
-    const payload = await TokenService.extractPayloadFromAccessToken(accessToken);
-    if (!payload) {
-      return null;
-    }
+    const payload = await TokenService.extractPayloadFromAccessToken(
+      accessToken
+    );
+    if (!payload) return null;
 
     const user = await getUserById(payload.userId as string);
     return user as IUser | null;

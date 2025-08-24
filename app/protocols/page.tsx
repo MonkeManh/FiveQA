@@ -13,6 +13,7 @@ import Footer from "@/components/footer";
 import { getServerUser } from "@/services/authService";
 import { redirect } from "next/navigation";
 import { emsProtocols } from "@/data/protocols";
+import { EAccountStatuses } from "@/models/enums";
 
 const protocolServices = [
   {
@@ -51,9 +52,9 @@ export default async function ProtocolsPage() {
   const user = await getServerUser();
   if (!user) return redirect("/login");
 
-  if (user.account_status === "suspended") {
+  if (user.account_status === EAccountStatuses.SUSPENDED) {
     return redirect("/suspended");
-  } else if (user.account_status === "tos") {
+  } else if (user.account_status === EAccountStatuses.TOS) {
     return redirect("/agreement");
   }
 

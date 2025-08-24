@@ -1,6 +1,7 @@
 import EMSCreateCallForm from "@/components/create-call/ems/ems-create-call-form";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import { EAccountStatuses } from "@/models/enums";
 import { getServerUser } from "@/services/authService";
 import { redirect } from "next/navigation";
 
@@ -9,9 +10,9 @@ export default async function CreateEMSCallPage() {
 
   if (!user) {
     return redirect("/login");
-  } else if (user.account_status === "suspended") {
+  } else if (user.account_status === EAccountStatuses.SUSPENDED) {
     return redirect("/suspended");
-  } else if (user.account_status === "tos") {
+  } else if (user.account_status === EAccountStatuses.TOS) {
     return redirect("/agreement");
   }
 

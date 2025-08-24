@@ -1,6 +1,7 @@
 import AgreementPageContent from "@/components/agreement/agreement-page-content";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import { EAccountStatuses } from "@/models/enums";
 import { getServerUser } from "@/services/authService";
 import { redirect } from "next/navigation";
 
@@ -11,7 +12,7 @@ export default async function AgreementPage() {
     return redirect("/login");
   }
 
-  if (user.account_status === "tos") {
+  if (user.account_status === EAccountStatuses.TOS) {
     return (
       <div>
         <Navbar />
@@ -19,7 +20,7 @@ export default async function AgreementPage() {
         <Footer />
       </div>
     );
-  } else if (user.account_status === "suspended") {
+  } else if (user.account_status === EAccountStatuses.SUSPENDED) {
     return redirect("/suspended");
   } else {
     return redirect("/dashboard");

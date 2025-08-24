@@ -1,16 +1,20 @@
 import Footer from "@/components/footer";
 import LoginForm from "@/components/login/login-form";
 import Navbar from "@/components/navbar";
+import { EAccountStatuses } from "@/models/enums";
 import { getServerUser } from "@/services/authService";
 import { redirect } from "next/navigation";
 
 export default async function StartPage() {
   const user = await getServerUser();
   if (user) {
-    if(user.account_status === "suspended") {
+    if(user.account_status === EAccountStatuses.SUSPENDED) {
       return redirect("/suspended");
+    } else if(user.account_status === EAccountStatuses.TOS) {
+      return redirect("/agreement");
+    } else {
+      return redirect("/dashboard");
     }
-    redirect("/dashboard");
   }
 
   return (
