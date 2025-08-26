@@ -14,6 +14,10 @@ export const ELECTROCUTION_LIGHTNING: IEMSProtocol = {
   defaultCode: "15D09",
   defaultPlan: 71,
   information: <></>,
+  availableTracks: [
+    { id: 1, name: "Electrocution" },
+    { id: 2, name: "Lightning" }
+  ],
   questions: [],
   determinants: [
     {

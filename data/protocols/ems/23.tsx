@@ -14,6 +14,9 @@ export const OVERDOSE_POISONING: IEMSProtocol = {
   defaultCode: "23C07",
   defaultPlan: 129,
   preSend: true,
+  availableTracks: [
+    { id: 1, name: "Poison Control request" }
+  ],
   information: <></>,
   questions: [],
   determinants: [

@@ -14,6 +14,11 @@ export const ASSAULT: IEMSProtocol = {
   defaultCode: "04B03",
   defaultPlan: 14,
   information: <></>,
+  availableTracks: [
+    { id: 1, name: "Assault" },
+    { id: 2, name: "Sexual Assault" },
+    { id: 3, name: "Stun Gun" },
+  ],
   questions: [],
   determinants: [
     {

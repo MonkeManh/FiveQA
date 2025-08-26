@@ -14,6 +14,10 @@ export const HEM_LAC: IEMSProtocol = {
   defaultCode: "21B01",
   defaultPlan: 107,
   preSend: true,
+  availableTracks: [
+    { id: 1, name: "Traumatic (injury) bleeding" },
+    { id: 2, name: "Non-traumatic (medical) bleeding" },
+  ],
   information: <></>,
   questions: [],
   determinants: [
@@ -32,13 +36,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 108,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 109,
               priority: 0,
             },
@@ -56,13 +60,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 111,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 112,
               priority: 0,
             },
@@ -85,13 +89,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 108,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 109,
               priority: 0,
             },
@@ -109,13 +113,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 108,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 109,
               priority: 0,
             },
@@ -133,13 +137,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 108,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 109,
               priority: 0,
             },
@@ -153,13 +157,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 108,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 109,
               priority: 0,
             },
@@ -173,13 +177,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 108,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 109,
               priority: 0,
             },
@@ -202,13 +206,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 114,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 115,
               priority: 0,
             },
@@ -226,13 +230,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 108,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 109,
               priority: 0,
             },
@@ -250,13 +254,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 108,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 109,
               priority: 0,
             },
@@ -274,13 +278,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 108,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 109,
               priority: 0,
             },
@@ -303,13 +307,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 114,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 115,
               priority: 0,
             },
@@ -324,13 +328,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 117,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 118,
               priority: 0,
             },
@@ -345,13 +349,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 120,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 121,
               priority: 0,
             },
@@ -369,13 +373,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 114,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 115,
               priority: 0,
             },
@@ -393,13 +397,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 114,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 115,
               priority: 0,
             },
@@ -417,13 +421,13 @@ export const HEM_LAC: IEMSProtocol = {
           suffixes: [
             {
               suffix: "M",
-              text: <p>Medical</p>,
+              text: <p className="font-bold">MEDICAL</p>,
               recResponse: 114,
               priority: 0,
             },
             {
               suffix: "T",
-              text: <p>Trauma</p>,
+              text: <p className="font-bold">TRAUMA</p>,
               recResponse: 115,
               priority: 0,
             },

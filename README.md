@@ -71,7 +71,7 @@ As questions are answered, FiveQA:
 
 ---
 
-## 🚑 EMS Protocols
+## 🚑 EMS Protocols (MPDS)
 
 FiveQA includes 36 EMS protocols, adapted from the real-world Medical Priority Dispatch System. Dispatchers select the most relevant protocol based on the caller's chief complaint.
 
@@ -116,7 +116,7 @@ FiveQA includes 36 EMS protocols, adapted from the real-world Medical Priority D
 
 ---
 
-## 🔥 Fire Protocols
+## 🔥 Fire Protocols (FPDS)
 
 | #   | Protocol                                                  |
 | --- | --------------------------------------------------------- |

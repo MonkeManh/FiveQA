@@ -13,6 +13,11 @@ export const CRASH_NOTI: IEMSProtocol = {
   defaultPriority: "B",
   defaultCode: "",
   defaultPlan: 0,
+  availableTracks: [
+    { id: 1, name: "Airbag" },
+    { id: 2, name: "Button push" },
+    { id: 3, name: "Other automatic sensor" }
+  ],
   information: <></>,
   questions: [],
   determinants: [],

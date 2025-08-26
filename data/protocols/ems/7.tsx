@@ -14,6 +14,15 @@ export const BURNS_EXPLOSION: IEMSProtocol = {
   defaultCode: "07B02",
   defaultPlan: 26,
   preSend: true,
+  availableTracks: [
+    { id: 1, name: "Scalds" },
+    { id: 2, name: "Explosion/Blast" },
+    { id: 3, name: "Sunburn" },
+    { id: 4, name: "Fire alarm (unknown situation)" },
+    { id: 5, name: "Fire (no persons inside)" },
+    { id: 6, name: "Fire (persons reported inside)" },
+    { id: 7, name: "Fire (unknown if persons inside)" },
+  ],
   information: <></>,
   questions: [],
   determinants: [

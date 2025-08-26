@@ -70,6 +70,18 @@ export const ALLERGIES: IEMSProtocol = {
   defaultPriority: "A",
   defaultCode: "02A03",
   defaultPlan: 4,
+  availableTracks: [
+    { id: 1, name: "Allergic reaction" },
+    { id: 2, name: "Allergic reaction concern only (asymptomatic)" },
+    { id: 3, name: "Snakebite" },
+    { id: 4, name: "Spider bite" },
+    { id: 5, name: "SWARMING attack" },
+    { id: 6, name: "Scorpion" },
+    { id: 7, name: "Jellyfish" },
+    { id: 8, name: "Marine (fish)" },
+    { id: 9, name: "Stingray/Lionfish" },
+    { id: 10, name: "Flying insect" }
+  ],
   information: <></>,
   questions: [],
   determinants: [

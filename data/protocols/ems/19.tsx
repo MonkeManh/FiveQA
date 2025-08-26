@@ -14,6 +14,13 @@ export const HEART_PROBLEMS: IEMSProtocol = {
   defaultCode: "19C07",
   defaultPlan: 94,
   information: <></>,
+  availableTracks: [
+    { id: 1, name: "Pacemaker" },
+    { id: 2, name: "Implanted Defibrillator (A.I.C.D.)" },
+    { id: 3, name: "Left Ventricular Assist Device (LVAD)" },
+    { id: 4, name: "Just resuscitated and/or defibrillated (external)" },
+    { id: 5, name: "Heart rate number known (from device)" }
+  ],
   questions: [],
   determinants: [
     {

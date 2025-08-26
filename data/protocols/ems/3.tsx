@@ -14,6 +14,12 @@ export const ANIMAL_BITE: IEMSProtocol = {
   defaultCode: "03B03",
   defaultPlan: 9,
   preSend: true,
+  availableTracks: [
+    { id: 1, name: "Animal bite" },
+    { id: 2, name: "Animal attack in progress" },
+    { id: 3, name: "MAULING" },
+    { id: 4, name: "Multiple animal situation" },
+  ],
   information: <></>,
   questions: [
     {
@@ -382,7 +388,8 @@ export const ANIMAL_BITE: IEMSProtocol = {
           display: "Injs to DANG body area",
           answerDisplay: (
             <p className="text-red-500">
-              **pronoun** has injuries to a <b className="font-bold">DANGEROUS</b> body area.
+              **pronoun** has injuries to a{" "}
+              <b className="font-bold">DANGEROUS</b> body area.
             </p>
           ),
           answerPriority: 1,
@@ -393,7 +400,8 @@ export const ANIMAL_BITE: IEMSProtocol = {
           display: "Injs to POSSIBLY DANG body area",
           answerDisplay: (
             <p className="text-yellow-500">
-              **pronoun** has injuries to a <b className="font-bold">POSSIBLY DANGEROUS</b> body area.
+              **pronoun** has injuries to a{" "}
+              <b className="font-bold">POSSIBLY DANGEROUS</b> body area.
             </p>
           ),
           answerPriority: 2,
@@ -404,7 +412,8 @@ export const ANIMAL_BITE: IEMSProtocol = {
           display: "Injs to NOT DANG body area",
           answerDisplay: (
             <p className="text-green-500">
-              **pronoun** has injuries to a <b className="font-bold">NOT DANGEROUS</b> body area.
+              **pronoun** has injuries to a{" "}
+              <b className="font-bold">NOT DANGEROUS</b> body area.
             </p>
           ),
           answerPriority: 3,

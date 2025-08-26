@@ -13,6 +13,17 @@ export const INACCESS_ENTRAP: IEMSProtocol = {
   defaultPriority: "B",
   defaultCode: "22B03",
   defaultPlan: 122,
+  availableTracks: [
+    { id: 1, name: "Mechanical ENTRAPMENT" },
+    { id: 2, name: "Machinery ENTRAPMENT" },
+    { id: 3, name: "Other ENTRAPMENT" },
+    { id: 4, name: "Trench collapse" },
+    { id: 5, name: "Structure collapse" },
+    { id: 6, name: "Confined space" },
+    { id: 7, name: "Inaccessible terrain" },
+    { id: 8, name: "Mudslide" },
+    { id: 9, name: "Avalanche" }
+  ],
   information: <></>,
   questions: [],
   determinants: [

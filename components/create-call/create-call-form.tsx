@@ -1024,37 +1024,39 @@ export default function CreateCallForm() {
               </div>
               <div className="flex flex-row-reverse items-center gap-2">
                 {callData.service && (
-                  <Button
-                    ref={createCallRef}
-                    className="cursor-pointer focus:ring-2 focus:ring-destructive/50 rounded-xs"
-                    variant="outline"
-                    onClick={() => {
-                      const existingCall = localStorage.getItem("NEW_CALL");
-                      if (existingCall) {
-                        const parsedCall = JSON.parse(existingCall);
-                        router.push(
-                          `/create-call/${parsedCall.case_entry.service}`
-                        );
-                      } else {
-                        createCall();
-                      }
-                    }}
-                    onKeyDown={handleCreateKeyDown}
-                  >
-                    {localStorage.getItem("NEW_CALL")
-                      ? "Continue"
-                      : "Create Call"}
-                    <CircleArrowRight className="h-4 w-4 text-green-500" />
-                  </Button>
+                  <>
+                    <Button
+                      ref={createCallRef}
+                      className="cursor-pointer focus:ring-2 focus:ring-destructive/50 rounded-xs"
+                      variant="outline"
+                      onClick={() => {
+                        const existingCall = localStorage.getItem("NEW_CALL");
+                        if (existingCall) {
+                          const parsedCall = JSON.parse(existingCall);
+                          router.push(
+                            `/create-call/${parsedCall.case_entry.service}`
+                          );
+                        } else {
+                          createCall();
+                        }
+                      }}
+                      onKeyDown={handleCreateKeyDown}
+                    >
+                      {localStorage.getItem("NEW_CALL")
+                        ? "Continue"
+                        : "Create Call"}
+                      <CircleArrowRight className="h-4 w-4 text-green-500" />
+                    </Button>
+                    <Button
+                      type="reset"
+                      variant="ghost"
+                      onClick={() => setIsCancelModalOpen(true)}
+                      className="rounded-xs"
+                    >
+                      Cancel
+                    </Button>
+                  </>
                 )}
-                <Button
-                  type="reset"
-                  variant="ghost"
-                  onClick={() => setIsCancelModalOpen(true)}
-                  className="rounded-xs"
-                >
-                  Cancel
-                </Button>
               </div>
             </div>
           </CardContent>

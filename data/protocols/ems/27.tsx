@@ -13,6 +13,12 @@ export const SHOT_STAB_TRAUMA: IEMSProtocol = {
   defaultPriority: "B",
   defaultCode: "27B04",
   defaultPlan: 152,
+  availableTracks: [
+    { id: 1, name: "Stabbing" },
+    { id: 2, name: "Gunshot wound" },
+    { id: 3, name: "Penetrating wound (not IMPALED now)" },
+    { id: 4, name: "IMPALED currently" }
+  ],
   information: <></>,
   questions: [],
   determinants: [

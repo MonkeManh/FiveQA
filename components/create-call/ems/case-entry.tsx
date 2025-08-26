@@ -89,12 +89,14 @@ export default function EMSCaseEntry({
     const consciousness = emsCase.case_entry.patient.consciousness;
 
     const highLight = (complaints: number[]) => {
-      const priority = allComplaints.filter((c) => 
+      const priority = allComplaints.filter((c) =>
         complaints.includes(c.value)
       );
       const others = allComplaints.filter((c) => !complaints.includes(c.value));
 
-      priority.sort((a, b) => complaints.indexOf(a.value) - complaints.indexOf(b.value));
+      priority.sort(
+        (a, b) => complaints.indexOf(a.value) - complaints.indexOf(b.value)
+      );
 
       const priorityOptions = priority.map((c) => ({
         value: c.value,
@@ -109,14 +111,14 @@ export default function EMSCaseEntry({
       }));
 
       return [...priorityOptions, ...otherOptions];
+    };
+
+    if (breathing === "no" || breathing === "agonal/ineffective") {
+      return highLight([9, 11, 12, 14, 15]);
     }
 
-    if(breathing === "no" || breathing === "agonal/ineffective") {
-      return highLight([9, 11, 12, 14 , 15]);
-    }
-
-    if(consciousness === "no") {
-      return highLight([31, 9, 11, 12, 14 , 15]);
+    if (consciousness === "no") {
+      return highLight([31, 9, 11, 12, 14, 15]);
     }
 
     return allComplaints.map((c) => ({
@@ -124,7 +126,10 @@ export default function EMSCaseEntry({
       label: c.label,
       subOptions: c.subOptions,
     }));
-  }, [emsCase.case_entry.patient.breathing, emsCase.case_entry.patient.consciousness])
+  }, [
+    emsCase.case_entry.patient.breathing,
+    emsCase.case_entry.patient.consciousness,
+  ]);
 
   useEffect(() => {
     const storedInitialCall = localStorage.getItem("NEW_CALL");
@@ -318,9 +323,12 @@ export default function EMSCaseEntry({
         "No initial call data found. Please start a new call."
       );
 
-    if(emsCase.case_stage === "kq") return setActiveTab('kq');
+    if (emsCase.case_stage === "kq") return setActiveTab("kq");
 
-    handleEMSCaseEntryChange("chief_complaint", emsCase?.case_entry.initial_complaint);
+    handleEMSCaseEntryChange(
+      "chief_complaint",
+      emsCase?.case_entry.initial_complaint
+    );
 
     const temp_caller_type = emsCase.case_entry.patient.caller_type;
     const caller_type =
@@ -376,7 +384,9 @@ export default function EMSCaseEntry({
       : "";
 
     const text = [
-      `Location: ${initialCall.case_entry.location}, ${initialCall.case_entry.city} ${
+      `Location: ${initialCall.case_entry.location}, ${
+        initialCall.case_entry.city
+      } ${
         initialCall.case_entry.loc_name &&
         `- ${initialCall.case_entry.loc_name}`
       }`,
@@ -384,7 +394,11 @@ export default function EMSCaseEntry({
       callerInfo,
       "==============================",
       patientInfo,
-      `CC Text: ${emsProtocols.find((c) => c.protocol === emsCase.case_entry.initial_complaint)?.name}`,
+      `CC Text: ${
+        emsProtocols.find(
+          (c) => c.protocol === emsCase.case_entry.initial_complaint
+        )?.name
+      }`,
       `Caller Statement: ${emsCase.case_entry.caller_statement}`,
     ]
       .flat()
@@ -451,7 +465,6 @@ export default function EMSCaseEntry({
       }, 50);
     }
   }, [userInitiatedChange]);
-
 
   const onCallerTypeHotKey = useCallback((e: React.KeyboardEvent) => {
     const key = e.key.toLowerCase();
@@ -1318,9 +1331,25 @@ export default function EMSCaseEntry({
           <div className="w-full col-span-4">
             <Combobox
               options={sortedComplaintOptions}
-              value={emsCase?.case_entry?.chief_complaint || emsCase?.case_entry?.initial_complaint || ""}
-              onValueChange={(value) => {
-                handleEMSCaseEntryChange("initial_complaint", value, true);
+              value={{
+                main:
+                  emsCase?.case_entry?.chief_complaint
+                    ? emsCase?.case_entry?.chief_complaint
+                    : emsCase?.case_entry?.initial_complaint
+                    ? emsCase?.case_entry?.initial_complaint
+                    : null,
+                sub: emsCase?.case_entry?.sub_complaint ?? null,
+              }}
+              onValueChange={({ main, sub }) => {
+                if (main !== null) {
+                  handleEMSCaseEntryChange("initial_complaint", main, true);
+                }
+                // store the sub complaint string, or "" if none selected
+                handleEMSCaseEntryChange(
+                  "sub_complaint",
+                  sub ? String(sub) : "",
+                  true
+                );
               }}
               onClick={() => {
                 setFocusedInput("chief_complaint");
@@ -1331,7 +1360,6 @@ export default function EMSCaseEntry({
               noInput
               heightFit
               onFocus={() => {
-                //
                 setFocusedInput("chief_complaint");
                 setFocusedField("chief_complaint");
               }}

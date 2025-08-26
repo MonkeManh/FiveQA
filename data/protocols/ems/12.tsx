@@ -14,6 +14,13 @@ export const SEIZURES: IEMSProtocol = {
   defaultCode: "12C07",
   defaultPlan: 57,
   preSend: true,
+  availableTracks: [
+    { id: 1, name: "GENERALIZED seizure (not FOCAL or Impending)" },
+    { id: 2, name: "FOCAL seizure (localized twitching and conscious)" },
+    { id: 3, name: "ABSENCE seizure (past something something)" },
+    { id: 4, name: "Impending seizure (aura/pre)" },
+    { id: 5, name: "ATYPICAL (abnormal) seizure mentioned" }
+  ],
   information: <></>,
   questions: [],
   determinants: [

@@ -67,7 +67,7 @@ export default function EMSCreateCallForm() {
       },
       chief_complaint: 0,
       initial_complaint: 0,
-      sub_complaint: "",
+      sub_complaint: 0,
       case_entry_completed_time: "",
     },
     questions: {

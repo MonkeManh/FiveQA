@@ -13,6 +13,10 @@ export const UNKN_PROBLEM: IEMSProtocol = {
   defaultPriority: "B",
   defaultCode: "32B03",
   defaultPlan: 199,
+  availableTracks: [
+    { id: 1, name: "Medical Alarm (Alert) notification" },
+    { id: 2, name: "Language not understood (no interpreter in center)" }
+  ],
   information: <></>,
   questions: [],
   determinants: [

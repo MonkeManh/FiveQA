@@ -51,6 +51,10 @@ export const ABDO_PN: IEMSProtocol = {
   defaultCode: "01A01",
   defaultPriority: "A",
   defaultPlan: 1,
+  availableTracks: [
+    { id: 1, name: "Testicle or groin pain (male)" },
+    { id: 2, name: "Diagnosed aortic aneurysm" }
+  ],
   information: <></>,
   questions: [
     {
@@ -381,6 +385,65 @@ export const ABDO_PN: IEMSProtocol = {
         {
           answer: "Unknown",
           answerDisplay: <p>Unknown where the pain is located</p>,
+        },
+      ],
+    },
+
+    {
+      text: (
+        <p>
+          Does **pronoun** have any <b className="font-bold">testicle</b> or{" "}
+          <b className="font-bold">groin</b> pain?
+        </p>
+      ),
+      firstPersonText: (
+        <p>
+          Do you have any <b className="font-bold">testicle</b> or{" "}
+          <b className="font-bold">groin</b> pain?
+        </p>
+      ),
+      questionType: "select",
+      preRenderInstructions: (patient, answers) => {
+        const targetAnswer = answers.find(
+          (a) => a.rawText === "Where is the pain located?"
+        )?.answer;
+        return targetAnswer !== "Groin/Testicles" && patient.gender === "male";
+      },
+      preRenderDeps: ["patient", "questions"],
+      preRenderLogic:
+        "the answer to the last question is not Groin/Testicles and the patient is a male",
+      answers: [
+        {
+          answer: "No",
+          display: "No groin/testicle pn",
+          answerDisplay: (
+            <p className="text-green-500">
+              **pronoun** has <b className="font-bold">no</b> groin/testicle
+              pain
+            </p>
+          ),
+          continue: true,
+        },
+        {
+          answer: "Yes",
+          display: "Groin/testicle pn",
+          answerDisplay: (
+            <p className="text-green-500">
+              **pronoun** has groin/testicle pain
+            </p>
+          ),
+          continue: true,
+          pushCodes: ["01A02"],
+        },
+        {
+          answer: "Unknown",
+          display: "Unk if groin/testicle pn",
+          answerDisplay: (
+            <p className="text-green-500">
+              Unknown if **pronoun** has groin/testicle pain
+            </p>
+          ),
+          continue: true,
         },
       ],
     },

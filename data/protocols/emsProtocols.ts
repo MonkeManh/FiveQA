@@ -41,7 +41,7 @@ export function getEMSProtocols() {
     value: c.protocol,
     label: c.name,
     subOptions: c.availableTracks?.map((t) => ({
-      value: t.protocol,
+      value: t.id,
       label: t.name,
     })),
   }));

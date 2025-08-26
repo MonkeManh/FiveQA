@@ -175,3 +175,7 @@
 .blink-red {
   animation: blink-red 1.5s infinite;
 }
+
+.scrollbar-thumb-rounded-none::-webkit-scrollbar-thumb {
+  border-radius: 0 !important;
+}

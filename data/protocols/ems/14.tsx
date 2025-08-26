@@ -14,6 +14,14 @@ export const DROWNING: IEMSProtocol = {
   defaultCode: "14B03",
   defaultPlan: 65,
   preSend: true,
+  availableTracks: [
+    { id: 1, name: "DIVING injury (not underwater)" },
+    { id: 2, name: "SCUBA accident (not underwater)" },
+    { id: 3, name: "SWIFT water rescue" },
+    { id: 4, name: "Floodwater rescue" },
+    { id: 5, name: "Ice rescue" },
+    { id: 6, name: "Other drowning/near drowning situation" }
+  ],
   information: <></>,
   questions: [],
   determinants: [

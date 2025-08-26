@@ -13,6 +13,11 @@ export const TRANSFER: IEMSProtocol = {
   defaultPriority: "A",
   defaultCode: "33A01",
   defaultPlan: 201,
+  availableTracks: [
+    { id: 1, name: "Transfer/Interfacility" },
+    { id: 2, name: "Palliative Care" },
+    { id: 3, name: "Just resuscitated and/or defibrillated (external)" }
+  ],
   information: <></>,
   questions: [
     {

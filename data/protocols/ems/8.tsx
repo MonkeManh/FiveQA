@@ -14,6 +14,9 @@ export const CARB_MONO_HAZ: IEMSProtocol = {
   defaultCode: "08D06",
   defaultPlan: 40,
   preSend: true,
+  availableTracks: [
+    { id: 1, name: "CO detector alarm" }
+  ],
   information: <></>,
   questions: [],
   determinants: [

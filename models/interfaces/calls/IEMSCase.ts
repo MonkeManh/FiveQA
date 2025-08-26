@@ -13,7 +13,7 @@ export interface IEMSCase {
       breathing: "yes" | "no" | "uncertain" | "unknown" | "agonal/ineffective" | "";
     };
     chief_complaint: number;
-    sub_complaint: string;
+    sub_complaint: number;
     initial_complaint: number;
     case_entry_completed_time: string;
   };

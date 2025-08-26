@@ -13,6 +13,10 @@ export const HEAT_COLD_EXPOSURE: IEMSProtocol = {
   defaultPriority: "B",
   defaultCode: "20B02",
   defaultPlan: 99,
+  availableTracks: [
+    { id: 1, name: "Heat exposure" },
+    { id: 2, name: "Cold exposure" }
+  ],
   information: <></>,
   questions: [],
   determinants: [

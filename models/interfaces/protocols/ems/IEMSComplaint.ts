@@ -15,7 +15,7 @@ export interface IEMSProtocol {
   defaultPlan: number;
   preSend?: boolean;
   availableTracks?: {
-    protocol: number;
+    id: number;
     name: string;
   }[];
   questions: IEMSQuestion[];

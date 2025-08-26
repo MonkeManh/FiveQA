@@ -14,6 +14,13 @@ export const CARDIAC_ARREST: IEMSProtocol = {
   defaultCode: "09E00",
   defaultPlan: 40,
   preSend: true,
+  availableTracks: [
+    { id: 1, name: "Witnessed or Just Occurred Cardiac Arrest" },
+    { id: 2, name: "Unwitnessed Cardiac Arrest (time unknown)" },
+    { id: 3, name: "Respiratory Arrest" },
+    { id: 4, name: "OBVIOUS DEATH (suspected)" },
+    { id: 5, name: "EXPECTED DEATH" },
+  ],
   information: <></>,
   questions: [],
   determinants: [

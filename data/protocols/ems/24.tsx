@@ -13,6 +13,22 @@ export const PREGNANCY_CHILD_BIRTH: IEMSProtocol = {
   defaultPriority: "B",
   defaultCode: "24B02",
   defaultPlan: 139,
+  availableTracks: [
+    { id: 1, name: "Labor (contractions) in progress" },
+    { id: 2, name: "Pregnancy problem (no contractions or birth)" },
+    { id: 3, name: "Possibly MISCARRIAGE with SIGNS OF LIFE" },
+    { id: 4, name: "MISCARRIAGE" },
+    { id: 5, name: "THREATENED MISCARRIAGE" },
+    { id: 6, name: "STILLBIRTH (non-viable baby born)" },
+    { id: 7, name: "STILLBIRTH (non-viable baby - labor)" },
+    { id: 8, name: "Baby born (completely out)" },
+    { id: 9, name: "Head visible (crowning)" },
+    { id: 10, name: "Head out" },
+    { id: 11, name: "Head stuck (arms & body out)" },
+    { id: 12, name: "Umbilical cord visible" },
+    { id: 13, name: "Hand(s) visible" },
+    { id: 14, name: "Buttocks visible" }
+  ],
   information: <></>,
   questions: [],
   determinants: [

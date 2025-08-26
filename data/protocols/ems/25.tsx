@@ -14,6 +14,11 @@ export const PSYCH_ABN_BEH: IEMSProtocol = {
   defaultCode: "25B06",
   defaultPlan: 142,
   preSend: true,
+  availableTracks: [
+    { id: 1, name: "Jumper (threatening)" },
+    { id: 2, name: "Jumped now" },
+    { id: 3, name: "Suicide threatened" }
+  ],
   information: <></>,
   questions: [],
   determinants: [
