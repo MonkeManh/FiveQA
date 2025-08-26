@@ -1,14 +1,16 @@
-import CreateCallForm from "@/components/create-call/create-call-form";
 import Footer from "@/components/footer";
+import LocationList from "@/components/locations/location-list";
 import Navbar from "@/components/navbar";
 import { EAccountStatuses } from "@/models/enums";
+import { ILocation } from "@/models/interfaces";
 import { getServerUser } from "@/services/authService";
-import { getLocations } from "@/services/dataService";
+import { getLocations, createNewLocation } from "@/services/dataService";
 import { redirect } from "next/navigation";
+import { toast } from "sonner";
 
 export default async function CreateCallPage() {
   const user = await getServerUser();
-  const locations = await getLocations();
+  const locations = await getLocations()
 
   if (!user) {
     return redirect("/login");
@@ -16,6 +18,9 @@ export default async function CreateCallPage() {
     return redirect("/suspended");
   } else if (user.account_status === EAccountStatuses.TOS) {
     return redirect("/agreement");
+  } else if (!user.isAdmin) {
+    toast.error("Unauthorized!");
+    return redirect("/dashboard");
   }
 
   return (
@@ -23,7 +28,7 @@ export default async function CreateCallPage() {
       <Navbar />
       <main className="w-full flex justify-center flex-1">
         <div className="flex-1 container py-8">
-          <CreateCallForm locations={locations} />
+          <LocationList user={user} locations={locations}  />
         </div>
       </main>
       <Footer />

@@ -1,6 +1,4 @@
 "use client";
-
-import { locations } from "@/data/locations/locations";
 import { postals } from "@/data/locations/postals";
 import { streets } from "@/data/locations/streets";
 import { ILocation, INewCall, IPostal, IStreets } from "@/models/interfaces";
@@ -54,7 +52,12 @@ type ILocationOption = {
   };
   locationData?: ILocation;
 };
-export default function CreateCallForm() {
+
+interface ICreateCallFormProps {
+  locations: ILocation[];
+}
+  
+export default function CreateCallForm({ locations }: ICreateCallFormProps) {
   const [callData, setCallData] = useState<INewCall>({
     location: "",
     apt_unit: "",

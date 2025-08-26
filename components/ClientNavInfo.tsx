@@ -5,6 +5,13 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import CallsignModal from "./modals/callsign-modal";
 import { IUser } from "@/models/interfaces";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ChevronDown } from "lucide-react";
 
 interface IClientNavInfoProps {
   user: IUser | null;
@@ -60,8 +67,16 @@ export default function ClientNavInfo({ user }: IClientNavInfoProps) {
     { href: "/protocols", label: "Protocols" },
     { href: "/response-plans", label: "Response Plans" },
     { href: "/glossary", label: "Glossary" },
-    { href: "/guides", label: "Guides" }
+    { href: "/guides", label: "Guides" },
   ];
+
+  const locLinks = [
+    { href: "/postals", label: "Postals" },
+    { href: "/streets", label: "Streets" },
+    { href: "/locations", label: "Verified Locations" },
+  ];
+
+  const isLocationActive = locLinks.some(({ href }) => pathname.includes(href));
 
   if (isLoading) return null;
 
@@ -80,17 +95,47 @@ export default function ClientNavInfo({ user }: IClientNavInfoProps) {
         </>
       ) : user ? (
         <nav className="flex items-center gap-2 text-sm">
-          {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={`px-4 py-2 rounded-xs font-medium transition-all hover:bg-muted hover:text-primary ${
-                pathname.includes(href) ? "bg-muted text-primary" : ""
-              }`}
-            >
-              {label}
-            </Link>
-          ))}
+          <>
+            {navLinks.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className={`px-4 py-2 rounded-xs font-medium transition-all hover:bg-muted hover:text-primary ${
+                  pathname.includes(href) ? "bg-muted text-primary" : ""
+                }`}
+              >
+                {label}
+              </Link>
+            ))}
+            {user.isAdmin && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button
+                    className={`px-4 py-2 rounded-xs font-medium transition-all hover:bg-muted hover:text-primary flex items-center gap-1 ${
+                      isLocationActive ? "bg-muted text-primary" : ""
+                    }`}
+                  >
+                    Locations
+                    <ChevronDown className="h-4 w-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="min-w-[180px] rounded-xs">
+                  {locLinks.map(({ href, label }) => (
+                    <DropdownMenuItem key={href} asChild className="rounded-xs">
+                      <Link
+                        href={href}
+                        className={`w-full ${
+                          pathname.includes(href) ? "bg-muted text-primary" : ""
+                        }`}
+                      >
+                        {label}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
+          </>
         </nav>
       ) : null}
       <CallsignModal

@@ -6,6 +6,7 @@ import {
 } from "@/models/enums";
 
 export interface ILocation {
+  id: number;
   name: string;
   postal: string;
   mainStreet: string;
@@ -23,4 +24,8 @@ export interface ILocation {
   patrolArea: EPatrolAreas;
   fdRunOrder: EFireStations[];
   pdRunOrder: EPDAgencies[];
+  created_at?: string;
+  updated_at?: string;
+  created_by?: string;
+  updated_by?: string;
 }

@@ -1,6 +1,6 @@
 import { DashboardData } from "@/components/dashboard/dashboard-content";
 import pool from "@/lib/database";
-import { INewCall } from "@/models/interfaces";
+import { ILocation, INewCall, IUser } from "@/models/interfaces";
 import { AlarmClock, AlertTriangle, PhoneCall, Shield } from "lucide-react";
 import { getServerUser } from "./authService";
 
@@ -343,4 +343,106 @@ export async function getDashboardData(
   }
 }
 
+export async function getLocations() {
+  //   CREATE TABLE locations (
+  //     id INT AUTO_INCREMENT PRIMARY KEY,
+  //     name TEXT NOT NULL,
+  //     postal VARCHAR(4) NOT NULL,
+  //     mainStreet VARCHAR(256) NOT NULL,
+  //     crossStreet1 VARCHAR(256) NOT NULL,
+  //     crossStreet2 VARCHAR(256) NOT NULL,
+  //     apt VARCHAR(256) NULL,
+  //     twp VARCHAR(256) NULL,
+  //     municp VARCHAR(256) NULL,
+  //     cids TEXT NULL,
+  //     hasHeli BOOLEAN NOT NULL DEFAULT FALSE,
+  //     fireBox VARCHAR(256) NOT NULL,
 
+  //     fdDistrict ENUM(
+  //         "01","02","03","04","05","06","07","08","09","10","11","12"
+  //     ) NOT NULL,
+  //     fdRunOrder VARCHAR(256) NOT NULL,
+
+  //     pdDistrict ENUM(
+  //         "RCSO","MBPD","BCSO","PBPD","SAHP","SSPD","LCSO","LSPD"
+  //     ) NOT NULL,
+  //     pdRunOrder VARCHAR(256) NOT NULL,
+
+  //     post ENUM("North","South") NOT NULL,
+  //     patrolArea ENUM("1","2","3","4","5","6","7") NOT NULL,
+
+  //     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  //     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  //     created_by varchar(36) NOT NULL,
+  //     updated_by varchar(36) NOT NULL,
+
+  //     CONSTRAINT fk_locations_created_by FOREIGN KEY (created_by) REFERENCES users(id),
+  //     CONSTRAINT fk_locations_updated_by FOREIGN KEY (updated_by) REFERENCES users(id)
+  // );
+
+  const [rows] = await pool.query(
+    "SELECT * FROM locations ORDER BY postal ASC"
+  );
+  return rows as ILocation[];
+}
+
+export async function createNewLocation(
+  location: ILocation,
+  user: IUser
+): Promise<boolean> {
+  const toNull = (v: unknown) => (v === undefined || v === "" ? null : v);
+
+  const fdRunOrderJson =
+    typeof location.fdRunOrder === "string"
+      ? location.fdRunOrder
+      : JSON.stringify(location.fdRunOrder ?? []);
+  const pdRunOrderJson =
+    typeof location.pdRunOrder === "string"
+      ? location.pdRunOrder
+      : JSON.stringify(location.pdRunOrder ?? []);
+
+  try {
+    const sql = `
+      INSERT INTO locations
+        (name, postal, mainStreet, crossStreet1, crossStreet2,
+         apt, twp, municp, cids, hasHeli, fireBox,
+         fdDistrict, fdRunOrder, pdDistrict, pdRunOrder,
+         post, patrolArea, created_by)
+      VALUES
+        (?, ?, ?, ?, ?,
+         ?, ?, ?, ?, ?, ?,
+         ?, CAST(? AS JSON), ?, CAST(? AS JSON),
+         ?, ?, ?)
+    `;
+
+    const params = [
+      location.name,
+      location.postal,
+      location.mainStreet,
+      location.crossStreet1,
+      location.crossStreet2,
+      toNull(location.apt),
+      toNull(location.twp),
+      toNull(location.municp),
+      toNull(location.cids),
+      !!location.hasHeli, // BOOLEAN → TINYINT(1)
+      location.fireBox,
+
+      location.fdDistrict, // ENUM "01".."12"
+      fdRunOrderJson, // JSON string
+      location.pdDistrict, // ENUM police agencies
+      pdRunOrderJson, // JSON string
+
+      location.post, // ENUM "North"/"South"
+      location.patrolArea, // ENUM "1".."7"
+      user.id,
+    ];
+
+    const [result] = await pool.query(sql, params);
+    return (result as any).affectedRows === 1;
+  } catch (error) {
+    console.error("Error creating new location:", error);
+    return false;
+  }
+}
