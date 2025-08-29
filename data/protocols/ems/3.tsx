@@ -33,7 +33,7 @@ export const ANIMAL_BITE: IEMSProtocol = {
       questionType: "select",
       answers: [
         {
-          answer: "Now",
+          answer: "NOW",
           display: "Attack in progress",
           answerDisplay: (
             <p className="text-red-500">
@@ -408,8 +408,8 @@ export const ANIMAL_BITE: IEMSProtocol = {
           continue: true,
         },
         {
-          answer: "NOT DANGEROUS body area",
-          display: "Injs to NOT DANG body area",
+          answer: "NOT DANGEROUS body area (not head, neck or chest)",
+          display: "Inj to NOT DANG body area (not head/neck/chest)",
           answerDisplay: (
             <p className="text-green-500">
               **pronoun** has injuries to a{" "}

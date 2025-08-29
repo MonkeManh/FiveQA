@@ -1,16 +1,15 @@
 import Footer from "@/components/footer";
-import LocationList from "@/components/locations/location-list";
+import StreetList from "@/components/locations/street-list";
 import Navbar from "@/components/navbar";
 import { EAccountStatuses } from "@/models/enums";
-import { ILocation } from "@/models/interfaces";
 import { getServerUser } from "@/services/authService";
-import { getLocations, createNewLocation } from "@/services/dataService";
+import { getStreets } from "@/services/dataService";
 import { redirect } from "next/navigation";
 import { toast } from "sonner";
 
-export default async function CreateCallPage() {
+export default async function StreetsPage() {
   const user = await getServerUser();
-  const locations = await getLocations()
+  const streets = await getStreets();
 
   if (!user) {
     return redirect("/login");
@@ -28,7 +27,7 @@ export default async function CreateCallPage() {
       <Navbar />
       <main className="w-full flex justify-center flex-1">
         <div className="flex-1 container py-8">
-          <LocationList user={user} locations={locations}  />
+          <StreetList user={user} streets={streets} />
         </div>
       </main>
       <Footer />

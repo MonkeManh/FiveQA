@@ -1,6 +1,4 @@
-import { IEMSCase, IEMSProtocol } from "@/models/interfaces";
-import { IDependencyResult } from "@/models/interfaces/protocols/ems/IEMSAnswer";
-import { IPatient } from "@/models/interfaces/protocols/ems/IPatient";
+import { IEMSCase, IEMSProtocol, IDependencyResult, IPatient } from "@/models/interfaces";
 
 export const getHelpContent = (field: string) => {
   const helpContent: Record<

@@ -32,12 +32,15 @@ export interface IEMSAnswer {
   input?: boolean;
   send?: boolean;
   omit?: boolean;
+  setSceneSecure?: boolean;
   gotoProtocol?: number;
   pushPDIs?: string[];
-  pushSuffix?: string;
+  pushSuffixes?: string[];
 }
 
 export interface IDependencyResult {
   pushCodes?: string[];
+  pushSuffixes?: string[];
   send?: boolean;
+  end?: boolean;
 }

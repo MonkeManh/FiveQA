@@ -1,8 +1,10 @@
+"use server";
 import { DashboardData } from "@/components/dashboard/dashboard-content";
-import pool from "@/lib/database";
-import { ILocation, INewCall, IUser } from "@/models/interfaces";
+import { pool } from "@/lib/database";
+import { ILocation, INewCall, IStreets, IUser } from "@/models/interfaces";
 import { AlarmClock, AlertTriangle, PhoneCall, Shield } from "lucide-react";
 import { getServerUser } from "./authService";
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 
 export async function getDashboardData(
   userId: string,
@@ -387,6 +389,23 @@ export async function getLocations() {
   return rows as ILocation[];
 }
 
+export async function getStreets() {
+  //   CREATE TABLE streets (
+  //     id INT AUTO_INCREMENT PRIMARY KEY,
+  //     name TEXT NOT NULL,
+  //     crossingStreets JSON NOT NULL,
+  //     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  //     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  //     created_by VARCHAR(36) NOT NULL,
+  //     updated_by VARCHAR(36) NOT NULL,
+  //     CONSTRAINT fk_streets_created_by FOREIGN KEY (created_by) REFERENCES users(id),
+  //     CONSTRAINT fk_streets_updated_by FOREIGN KEY (updated_by) REFERENCES users(id)
+  // );
+
+  const [rows] = await pool.query("SELECT * FROM streets");
+  return rows as IStreets[];
+}
+
 export async function createNewLocation(
   location: ILocation,
   user: IUser
@@ -443,6 +462,108 @@ export async function createNewLocation(
     return (result as any).affectedRows === 1;
   } catch (error) {
     console.error("Error creating new location:", error);
+    return false;
+  }
+}
+
+export async function createNewStreet(name: string, user: IUser) {
+  try {
+    const sql = `
+      INSERT INTO streets
+        (name, created_by)
+      VALUES
+        (?, ?)
+    `;
+
+    const params = [name, user.id];
+
+    const [result] = await pool.query(sql, params);
+    return (result as any).affectedRows === 1;
+  } catch (error) {
+    console.error("Error creating new street:", error);
+    return false;
+  }
+}
+
+type CrossingStreet = NonNullable<IStreets["crossingStreets"]>[number];
+
+function normalizeCrossing(
+  v: unknown
+): CrossingStreet[] {
+  // v might be undefined, a stringified JSON, or an array already
+  if (!v) return [];
+  if (Array.isArray(v)) return v as CrossingStreet[];
+  if (typeof v === "string") {
+    try {
+      const parsed = JSON.parse(v);
+      return Array.isArray(parsed) ? (parsed as CrossingStreet[]) : [];
+    } catch {
+      return [];
+    }
+  }
+  return [];
+}
+
+function dedupeCrossings(arr: CrossingStreet[]): CrossingStreet[] {
+  // Build a stable key using the fields that define uniqueness for you
+  const seen = new Set<string>();
+  const out: CrossingStreet[] = [];
+  for (const item of arr) {
+    const key = [
+      item.street?.toLowerCase().trim(),
+      (item.postal || []).join("|"),
+      item.twp || "",
+      item.municp || "",
+    ].join("§"); // unlikely delimiter
+    if (!seen.has(key)) {
+      seen.add(key);
+      out.push(item);
+    }
+  }
+  return out;
+}
+
+export async function createNewCrossStreets(
+  streetName: string,
+  newCrossingStreets: IStreets["crossingStreets"],
+  user: IUser
+): Promise<boolean> {
+  // 1) fetch rows
+  const [rows] = await pool.query<RowDataPacket[]>(
+    "SELECT * FROM streets WHERE name = ? LIMIT 1",
+    [streetName]
+  );
+
+  if (!rows || rows.length === 0) {
+    console.error("Street not found:", streetName);
+    return false;
+  }
+
+  const existing = rows[0] as unknown as IStreets & RowDataPacket;
+
+  // 2) normalize existing + incoming
+  const current = normalizeCrossing((existing as any).crossingStreets);
+  const incoming = normalizeCrossing(newCrossingStreets);
+
+  // 3) merge + dedupe
+  const merged = dedupeCrossings([...current, ...incoming]);
+
+  try {
+    const sql = `
+      UPDATE streets
+         SET crossingStreets = CAST(? AS JSON),
+             updated_by = ?,
+             updated_at = NOW()
+       WHERE id = ?
+       LIMIT 1
+    `;
+
+    const params = [JSON.stringify(merged), user.id, (existing as any).id];
+
+    const [result] = await pool.query<ResultSetHeader>(sql, params);
+    return result.affectedRows === 1;
+  } catch (error) {
+    console.error("Error creating new crossing streets:", error);
     return false;
   }
 }

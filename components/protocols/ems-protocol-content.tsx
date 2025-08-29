@@ -216,6 +216,17 @@ function QuestionsList({
                       Answer Dependent
                     </Badge>
                   )}
+                {question.preRenderDeps &&
+                  question.preRenderDeps?.some((dep) =>
+                    ["track"].includes(dep)
+                  ) && (
+                    <Badge
+                      variant="outline"
+                      className="bg-yellow-50 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300  rounded-xs"
+                    >
+                      Track Dependent
+                    </Badge>
+                  )}
               </div>
               {isOpen ? (
                 <ChevronDown className="h-4 w-4 text-muted-foreground" />
@@ -489,7 +500,9 @@ export default function EMSProtocolsContent() {
             {Object.entries(priorityNames).map(([key, name]) => (
               <Badge
                 key={key}
-                className={`${priorityColors[key as keyof typeof priorityColors]} rounded-xs`}
+                className={`${
+                  priorityColors[key as keyof typeof priorityColors]
+                } rounded-xs`}
               >
                 {key} - {name}
               </Badge>

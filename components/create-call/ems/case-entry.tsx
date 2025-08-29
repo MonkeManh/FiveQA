@@ -1338,7 +1338,7 @@ export default function EMSCaseEntry({
                     : emsCase?.case_entry?.initial_complaint
                     ? emsCase?.case_entry?.initial_complaint
                     : null,
-                sub: emsCase?.case_entry?.sub_complaint ?? null,
+                sub: emsCase?.case_entry?.track ?? null,
               }}
               onValueChange={({ main, sub }) => {
                 if (main !== null) {
@@ -1346,7 +1346,7 @@ export default function EMSCaseEntry({
                 }
                 // store the sub complaint string, or "" if none selected
                 handleEMSCaseEntryChange(
-                  "sub_complaint",
+                  "track",
                   sub ? String(sub) : "",
                   true
                 );

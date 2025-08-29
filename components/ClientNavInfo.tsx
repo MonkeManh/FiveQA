@@ -71,9 +71,9 @@ export default function ClientNavInfo({ user }: IClientNavInfoProps) {
   ];
 
   const locLinks = [
-    { href: "/postals", label: "Postals" },
-    { href: "/streets", label: "Streets" },
-    { href: "/locations", label: "Verified Locations" },
+    { href: "/locations/postals", label: "Postals" },
+    { href: "/locations/streets", label: "Streets" },
+    { href: "/locations/verified-locations", label: "Verified Locations" },
   ];
 
   const isLocationActive = locLinks.some(({ href }) => pathname.includes(href));

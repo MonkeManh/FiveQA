@@ -15,8 +15,6 @@ import {
   User,
   Settings,
   LayoutDashboard,
-  CreditCard,
-  Bell,
   HelpCircle,
   LogOut,
   Shield,

@@ -5,7 +5,7 @@ import { EAccountStatuses } from "@/models/enums";
 import { getServerUser } from "@/services/authService";
 import { redirect } from "next/navigation";
 
-export default async function Page() {
+export default async function DashboardPage() {
   const user = await getServerUser();
   if (!user) {
     redirect("/login");

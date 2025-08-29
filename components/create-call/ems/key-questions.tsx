@@ -289,7 +289,8 @@ export default function EMSKeyQuestions({
           emsCase.case_entry.patient,
           emsCase.questions.list,
           emsCase.codes.selected_code,
-          emsCase.codes.selected_suffix
+          emsCase.codes.selected_suffix,
+          emsCase.case_entry.track
         );
       });
 
@@ -671,7 +672,8 @@ export default function EMSKeyQuestions({
                       emsCase.case_entry.patient,
                       emsCase.questions.list,
                       emsCase.codes.selected_code,
-                      emsCase.codes.selected_suffix
+                      emsCase.codes.selected_suffix,
+                      emsCase.case_entry.track
                     )
                   ) {
                     return null; // Skip this answer option

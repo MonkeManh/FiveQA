@@ -1,4 +1,4 @@
-import pool from "@/lib/database";
+import { pool } from "@/lib/database";
 import { getServerUser } from "@/services/authService";
 import { NextResponse } from "next/server";
 

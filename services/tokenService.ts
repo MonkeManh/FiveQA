@@ -1,4 +1,4 @@
-import pool from "@/lib/database";
+import { pool } from "@/lib/database";
 import { ITokenPayload, IUser } from "@/models/interfaces";
 import { importJWK, jwtVerify, SignJWT } from "jose";
 

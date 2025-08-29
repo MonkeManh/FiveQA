@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -32,6 +32,9 @@ import { Separator } from "../ui/separator";
 import { MultiSelectInput } from "../ui/multi-select-input";
 import { ILocation } from "@/models/interfaces";
 import { toast } from "sonner";
+import { ResponseOrders } from "@/data/plans";
+import { getLocations, getStreets } from "@/services/dataService";
+import { StreetAutocomplete } from "../ui/street-autocomplete";
 
 interface CreateLocationModalProps {
   open: boolean;
@@ -55,16 +58,53 @@ export default function CreateLocationModal({
     twp: "",
     municp: "",
     cids: "",
-    hasHeli: false,
+    hasHeli: 0,
     fireBox: "",
     fdDistrict: EFireStations.Station1,
     pdDistrict: EPDAgencies.LSPD,
-    post: EHPPosts.North,
+    post: EHPPosts.South,
     patrolArea: EPatrolAreas.Area1,
     fdRunOrder: [] as EFireStations[],
     pdRunOrder: [] as EPDAgencies[],
   });
+  const [streetSuggestions, setStreetSuggestions] = useState<string[]>([]);
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    const loadStreetSuggestions = async () => {
+      try {
+        const [streets, locations] = await Promise.all([
+          getStreets(),
+          getLocations(),
+        ]);
+
+        const suggestions = new Set<string>();
+
+        // Add main streets
+        streets.forEach((street) => suggestions.add(street.name));
+        locations.forEach((location) => {
+          suggestions.add(location.mainStreet);
+          if (location.crossStreet1) suggestions.add(location.crossStreet1);
+          if (location.crossStreet2) suggestions.add(location.crossStreet2);
+        });
+
+        // Add crossing streets
+        streets.forEach((street) => {
+          street.crossingStreets?.forEach((crossing) => {
+            suggestions.add(crossing.street);
+          });
+        });
+
+        setStreetSuggestions(Array.from(suggestions).sort());
+      } catch (error) {
+        console.error("Failed to load street suggestions:", error);
+      }
+    };
+
+    if (open) {
+      loadStreetSuggestions();
+    }
+  }, [open]);
 
   const handleInputChange = (name: string, value: any) => {
     setForm((prev) => ({
@@ -87,8 +127,6 @@ export default function CreateLocationModal({
     if (!loc.mainStreet) return toast.error("Missing main street!");
     if (!loc.crossStreet1 || !loc.crossStreet2)
       return toast.error("Missing cross streets!");
-    if (!loc.hasHeli)
-      return toast.error("Missing helicopter landing availability!");
     if (!loc.fireBox) return toast.error("Missing fire box!");
     if (!loc.fdDistrict) return toast.error("Missing fire district!");
     if (!loc.pdDistrict) return toast.error("Missing police district!");
@@ -146,7 +184,7 @@ export default function CreateLocationModal({
         twp: "",
         municp: "",
         cids: "",
-        hasHeli: false,
+        hasHeli: 0,
         fireBox: "",
         fdDistrict: EFireStations.Station1,
         pdDistrict: EPDAgencies.LSPD,
@@ -172,7 +210,7 @@ export default function CreateLocationModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-7xl w-[80vw] sm:max-w-7xl rounded-xs">
+      <DialogContent className="max-w-7xl w-[80vw] sm:max-w-7xl rounded-xs overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Plus className="h-5 w-5" />
@@ -211,41 +249,32 @@ export default function CreateLocationModal({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
               <Label htmlFor="mainStreet">Main Street *</Label>
-              <Input
-                id="mainStreet"
+              <StreetAutocomplete
                 value={form.mainStreet}
-                onChange={(e) =>
-                  handleInputChange("mainStreet", e.target.value)
+                onChange={(value: string) =>
+                  handleInputChange("mainStreet", value)
                 }
-                required
-                className="rounded-xs h-fit"
-                autoComplete="off"
+                suggestions={streetSuggestions}
               />
             </div>
             <div className="space-y-2">
               <Label htmlFor="crossStreet1">Cross Street 1 *</Label>
-              <Input
-                id="crossStreet1"
+              <StreetAutocomplete
                 value={form.crossStreet1}
-                onChange={(e) =>
-                  handleInputChange("crossStreet1", e.target.value)
+                onChange={(value: string) =>
+                  handleInputChange("crossStreet1", value)
                 }
-                required
-                className="rounded-xs h-fit"
-                autoComplete="off"
+                suggestions={streetSuggestions}
               />
             </div>
             <div className="space-y-2">
               <Label htmlFor="crossStreet2">Cross Street 2 *</Label>
-              <Input
-                id="crossStreet2"
+              <StreetAutocomplete
                 value={form.crossStreet2}
-                onChange={(e) =>
-                  handleInputChange("crossStreet2", e.target.value)
+                onChange={(value: string) =>
+                  handleInputChange("crossStreet2", value)
                 }
-                required
-                className="rounded-xs h-fit"
-                autoComplete="off"
+                suggestions={streetSuggestions}
               />
             </div>
           </div>
@@ -295,9 +324,19 @@ export default function CreateLocationModal({
                     <Input
                       id="fireBox"
                       value={form.fireBox}
-                      onChange={(e) =>
-                        handleInputChange("fireBox", e.target.value)
-                      }
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        handleInputChange("fireBox", value);
+
+                        if (value) {
+                          const [prefix] = value.split("-");
+                          if (prefix) {
+                            const fdDistrict =
+                              prefix.length === 1 ? `0${prefix}` : prefix;
+                            handleInputChange("fdDistrict", fdDistrict);
+                          }
+                        }
+                      }}
                       required
                       className="rounded-xs h-fit w-fit"
                       autoComplete="off"
@@ -307,9 +346,9 @@ export default function CreateLocationModal({
                     <Label htmlFor="hasHeli">Helicopter</Label>
                     <Checkbox
                       id="hasHeli"
-                      checked={form.hasHeli}
+                      checked={form.hasHeli === 1}
                       onCheckedChange={(checked) =>
-                        handleInputChange("hasHeli", checked)
+                        handleInputChange("hasHeli", checked ? 1 : 0)
                       }
                       className="rounded-xs w-7 h-7"
                     />
@@ -377,9 +416,43 @@ export default function CreateLocationModal({
                   <Label htmlFor="pdDistrict">Police District *</Label>
                   <Select
                     value={form.pdDistrict}
-                    onValueChange={(value) =>
-                      handleInputChange("pdDistrict", value)
-                    }
+                    onValueChange={(value) => {
+                      handleInputChange("pdDistrict", value);
+                      if (value === EPDAgencies.PBPD) {
+                        handleInputChange("patrolArea", EPatrolAreas.Area5);
+                        handleInputChange("post", EHPPosts.North);
+                        handleInputChange(
+                          "pdRunOrder",
+                          ResponseOrders.PBPD_BCSO_SAHP_SSPD_RCSO_MBPD_LCSO_LSPD
+                        );
+                      } else if (value === EPDAgencies.SSPD) {
+                        handleInputChange("patrolArea", EPatrolAreas.Area6);
+                        handleInputChange("post", EHPPosts.North);
+                        handleInputChange(
+                          "pdRunOrder",
+                          ResponseOrders.SSPD_BCSO_SAHP_PBPD_LCSO_LSPD_RCSO_MBPD
+                        );
+                      } else if (
+                        value === EPDAgencies.MBPD ||
+                        value === EPDAgencies.RCSO
+                      ) {
+                        handleInputChange("patrolArea", EPatrolAreas.Area7);
+                        handleInputChange("post", EHPPosts.North);
+                        if (value === EPDAgencies.MBPD) {
+                          handleInputChange(
+                            "pdRunOrder",
+                            ResponseOrders.MBPD_RCSO_SAHP_BCSO_PBPD_SSPD_LCSO_LSPD
+                          );
+                        }
+                      } else if (
+                        value === EPDAgencies.LSPD ||
+                        value === EPDAgencies.LCSO
+                      ) {
+                        handleInputChange("post", EHPPosts.South);
+                      } else if (value === EPDAgencies.BCSO) {
+                        handleInputChange("post", EHPPosts.North);
+                      }
+                    }}
                   >
                     <SelectTrigger className="rounded-xs">
                       <SelectValue className="rounded-xs" />
@@ -444,9 +517,9 @@ export default function CreateLocationModal({
                   </Select>
                 </div>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 w-full">
                 <Label>PD Run Order *</Label>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 w-full">
                   <MultiSelectInput
                     options={PD_OPTIONS}
                     selected={form.pdRunOrder || []}

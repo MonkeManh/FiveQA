@@ -16,7 +16,7 @@ export interface ILocation {
   twp?: string;
   municp?: string;
   cids?: string;
-  hasHeli: boolean;
+  hasHeli: 0 | 1;
   fdDistrict: EFireStations;
   pdDistrict: EPDAgencies;
   fireBox: string;

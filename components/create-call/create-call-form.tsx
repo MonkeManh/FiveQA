@@ -44,7 +44,9 @@ type ILocationOption = {
   display: string;
   searchTerms: string[];
   type: "street" | "postal" | "location";
-  streetData?: IStreets["crossingStreets"][0] & { mainStreet: string };
+  streetData?: NonNullable<IStreets["crossingStreets"]>[0] & {
+    mainStreet: string;
+  };
   postalData?: IPostal & {
     selectedStreet: string;
     crossStreet1: string;
@@ -55,9 +57,13 @@ type ILocationOption = {
 
 interface ICreateCallFormProps {
   locations: ILocation[];
+  streets: IStreets[];
 }
-  
-export default function CreateCallForm({ locations }: ICreateCallFormProps) {
+
+export default function CreateCallForm({
+  locations,
+  streets,
+}: ICreateCallFormProps) {
   const [callData, setCallData] = useState<INewCall>({
     location: "",
     apt_unit: "",
@@ -82,6 +88,8 @@ export default function CreateCallForm({ locations }: ICreateCallFormProps) {
   const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] =
     useState<number>(-1);
+  const [isSuggestionSelected, setIsSuggestionSelected] =
+    useState<boolean>(false);
   const suggestionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const suggestionsContainerRef = useRef<HTMLDivElement>(null);
   const callerNumberRef = useRef<HTMLInputElement>(null);
@@ -95,9 +103,10 @@ export default function CreateCallForm({ locations }: ICreateCallFormProps) {
 
     // Add cities from streets data
     streets.forEach((street) => {
-      street.crossingStreets.forEach((crossing) => {
-        if (crossing.twp) citySet.add(crossing.twp);
-      });
+      street.crossingStreets &&
+        street.crossingStreets.forEach((crossing) => {
+          if (crossing.twp) citySet.add(crossing.twp);
+        });
     });
 
     // Add cities from postals data
@@ -118,9 +127,10 @@ export default function CreateCallForm({ locations }: ICreateCallFormProps) {
 
     // Add municipalities from streets data
     streets.forEach((street) => {
-      street.crossingStreets.forEach((crossing) => {
-        if (crossing.municp) municpSet.add(crossing.municp);
-      });
+      street.crossingStreets &&
+        street.crossingStreets.forEach((crossing) => {
+          if (crossing.municp) municpSet.add(crossing.municp);
+        });
     });
 
     // Add municipalities from postals data
@@ -194,42 +204,45 @@ export default function CreateCallForm({ locations }: ICreateCallFormProps) {
 
     sortedStreets.forEach((street) => {
       // Sort crossing streets by their postal values numerically
-      const sortedCrossingStreets = [...street.crossingStreets].sort((a, b) => {
-        // Get the first postal from each crossing street for comparison
-        const aFirstPostal = a.postal[0];
-        const bFirstPostal = b.postal[0];
+      const sortedCrossingStreets =
+        street.crossingStreets &&
+        [...street.crossingStreets].sort((a, b) => {
+          // Get the first postal from each crossing street for comparison
+          const aFirstPostal = a.postal[0];
+          const bFirstPostal = b.postal[0];
 
-        // Convert to integers for proper numerical sorting
-        const aPostalNum = Number.parseInt(aFirstPostal, 10);
-        const bPostalNum = Number.parseInt(bFirstPostal, 10);
+          // Convert to integers for proper numerical sorting
+          const aPostalNum = Number.parseInt(aFirstPostal, 10);
+          const bPostalNum = Number.parseInt(bFirstPostal, 10);
 
-        return aPostalNum - bPostalNum;
-      });
-
-      sortedCrossingStreets.forEach((crossingStreet) => {
-        // Sort postals within each crossing street numerically
-        const sortedPostals = [...crossingStreet.postal].sort((a, b) => {
-          const aNum = Number.parseInt(a, 10);
-          const bNum = Number.parseInt(b, 10);
-          return aNum - bNum;
+          return aPostalNum - bPostalNum;
         });
 
-        sortedPostals.forEach((postal) => {
-          const display = `${street.name} @ ${crossingStreet.street} (${postal})`;
-          const searchTerms = [
-            street.name.toLowerCase(),
-            crossingStreet.street.toLowerCase(),
-            postal.toLowerCase(),
-          ];
+      sortedCrossingStreets &&
+        sortedCrossingStreets.forEach((crossingStreet) => {
+          // Sort postals within each crossing street numerically
+          const sortedPostals = [...crossingStreet.postal].sort((a, b) => {
+            const aNum = Number.parseInt(a, 10);
+            const bNum = Number.parseInt(b, 10);
+            return aNum - bNum;
+          });
 
-          streetOptions.push({
-            display,
-            searchTerms,
-            type: "street",
-            streetData: { ...crossingStreet, mainStreet: street.name },
+          sortedPostals.forEach((postal) => {
+            const display = `${street.name} @ ${crossingStreet.street} (${postal})`;
+            const searchTerms = [
+              street.name.toLowerCase(),
+              crossingStreet.street.toLowerCase(),
+              postal.toLowerCase(),
+            ];
+
+            streetOptions.push({
+              display,
+              searchTerms,
+              type: "street",
+              streetData: { ...crossingStreet, mainStreet: street.name },
+            });
           });
         });
-      });
     });
 
     // Process locations data last
@@ -256,6 +269,7 @@ export default function CreateCallForm({ locations }: ICreateCallFormProps) {
   const handleLocationChange = (value: string) => {
     setCallData((prev) => ({ ...prev, location: value }));
     setSelectedSuggestionIndex(-1); // Reset selection when typing
+    setIsSuggestionSelected(false);
     suggestionRefs.current = []; // Reset refs when suggestions change
     if (showLocationSuggestions) {
       if (value.length > 0) {
@@ -295,6 +309,7 @@ export default function CreateCallForm({ locations }: ICreateCallFormProps) {
     );
 
     if (selectedOption) {
+      setIsSuggestionSelected(true);
       if (selectedOption.type === "street" && selectedOption.streetData) {
         const { streetData } = selectedOption;
 
@@ -867,9 +882,15 @@ export default function CreateCallForm({ locations }: ICreateCallFormProps) {
               <Input
                 id="notes"
                 value={callData.notes}
-                readOnly
-                disabled
+                readOnly={isSuggestionSelected}
+                disabled={isSuggestionSelected}
                 className="flex-1 rounded-xs"
+                onChange={(e) =>
+                  setCallData((prev) => ({
+                    ...prev,
+                    notes: e.target.value,
+                  }))
+                }
               />
             </div>
 
@@ -881,9 +902,15 @@ export default function CreateCallForm({ locations }: ICreateCallFormProps) {
               <Input
                 id="cross-streets"
                 value={callData.cross_streets || "/"}
-                readOnly
-                disabled
+                readOnly={isSuggestionSelected}
+                disabled={isSuggestionSelected}
                 className="flex-1 rounded-xs"
+                onChange={(e) =>
+                  setCallData((prev) => ({
+                    ...prev,
+                    cross_streets: e.target.value,
+                  }))
+                }
               />
             </div>
 

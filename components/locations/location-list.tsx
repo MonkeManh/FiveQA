@@ -3,7 +3,7 @@
 import { ILocation, IUser } from "@/models/interfaces";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { MapPin, Phone, Plus } from "lucide-react";
+import { Flame, FlameIcon, Lock, MapPin, Phone, Plus } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
@@ -21,9 +21,15 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-
 import CreateLocationModal from "@/components/modals/create-location-modal";
-import { toast } from "sonner";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface ILocationListProps {
   user: IUser;
@@ -36,6 +42,26 @@ export default function LocationList({ user, locations }: ILocationListProps) {
     name: string;
     cids: string;
   } | null>(null);
+  const [selectedFireRunOrder, setSelectedFireRunOrder] = useState<{
+    name: string;
+    runOrder: string[];
+  } | null>(null);
+  const [selectedPDRunOrder, setSelectedPDRunOrder] = useState<{
+    name: string;
+    runOrder: string[];
+  } | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+
+  const totalPages = Math.ceil(locations.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentLocations = locations.slice(startIndex, endIndex);
+
+  const handleItemsPerPageChange = (value: string) => {
+    setItemsPerPage(Number(value));
+    setCurrentPage(1);
+  };
 
   const handleCidsClick = (locationName: string, cids: string) => {
     setSelectedCids({ name: locationName, cids });
@@ -64,9 +90,41 @@ export default function LocationList({ user, locations }: ILocationListProps) {
       </header>
       <Card className="rounded-xs">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <MapPin className="h-5 w-5" />
-            All Locations ({locations.length})
+          <CardTitle className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <MapPin className="h-5 w-5" />
+              All Locations ({locations.length})
+            </div>
+            <div className="flex items-center gap-2">
+              <Label htmlFor="itemsPerPage" className="text-sm font-normal">
+                Show:
+              </Label>
+              <Select
+                value={itemsPerPage.toString()}
+                onValueChange={handleItemsPerPageChange}
+              >
+                <SelectTrigger className="w-20 rounded-xs">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="rounded-xs">
+                  <SelectItem className="rounded-xs" value="10">
+                    10
+                  </SelectItem>
+                  <SelectItem className="rounded-xs" value="15">
+                    15
+                  </SelectItem>
+                  <SelectItem className="rounded-xs" value="20">
+                    20
+                  </SelectItem>
+                  <SelectItem className="rounded-xs" value="50">
+                    50
+                  </SelectItem>
+                  <SelectItem className="rounded-xs" value="100">
+                    100
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -82,7 +140,7 @@ export default function LocationList({ user, locations }: ILocationListProps) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {locations.map((location) => (
+              {currentLocations.map((location) => (
                 <TableRow key={location.id}>
                   <TableCell>
                     <div className="font-medium">{location.name}</div>
@@ -93,7 +151,7 @@ export default function LocationList({ user, locations }: ILocationListProps) {
                   <TableCell>
                     <div className="text-sm">
                       <div>{location.mainStreet}</div>
-                      <div className="text-muted-foreground">
+                      <div className="text-muted-foreground max-w-xs whitespace-nowrap overflow-hidden text-ellipsis">
                         {location.crossStreet1} / {location.crossStreet2}
                       </div>
                       {location.municp && (
@@ -128,17 +186,35 @@ export default function LocationList({ user, locations }: ILocationListProps) {
                   </TableCell>
                   <TableCell>
                     <div className="space-y-1 flex flex-col">
-                      <Badge variant="outline" className="text-xs rounded-xs">
-                        Fire: {location.fdRunOrder.join(", ")}
+                      <Badge
+                        variant="outline"
+                        className="text-xs rounded-xs"
+                        onClick={() =>
+                          setSelectedFireRunOrder({
+                            name: location.name,
+                            runOrder: location.fdRunOrder,
+                          })
+                        }
+                      >
+                        Fire Stations
                       </Badge>
-                      <Badge variant="outline" className="text-xs rounded-xs">
-                        Police: {location.pdRunOrder.join(", ")}
+                      <Badge
+                        variant="outline"
+                        className="text-xs rounded-xs"
+                        onClick={() =>
+                          setSelectedPDRunOrder({
+                            name: location.name,
+                            runOrder: location.pdRunOrder,
+                          })
+                        }
+                      >
+                        Police Agencies
                       </Badge>
                     </div>
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
-                      {location.hasHeli && (
+                      {location.hasHeli === 1 && (
                         <Badge
                           variant="secondary"
                           className="text-xs flex items-center gap-1 rounded-xs"
@@ -186,6 +262,63 @@ export default function LocationList({ user, locations }: ILocationListProps) {
           </div>
         </DialogContent>
       </Dialog>
+      <Dialog
+        open={!!selectedFireRunOrder}
+        onOpenChange={() => setSelectedFireRunOrder(null)}
+      >
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <FlameIcon className="h-5 w-5 text-red-500" />
+              Fire Run Order - {selectedFireRunOrder?.name}
+            </DialogTitle>
+            <DialogDescription>
+              The fire department station run order for this location
+            </DialogDescription>
+          </DialogHeader>
+          <div className="mt-4">
+            <div className="bg-muted p-4 rounded-lg flex flex-wrap gap-2">
+              {selectedFireRunOrder?.runOrder.map((station, index) => (
+                <span key={index} className="flex items-center gap-1">
+                  <Badge variant="outline" className="text-xs rounded-xs">
+                    Station {station}
+                  </Badge>
+                  {index !== selectedFireRunOrder?.runOrder.length - 1 && "→"}
+                </span>
+              ))}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+      <Dialog
+        open={!!selectedPDRunOrder}
+        onOpenChange={() => setSelectedPDRunOrder(null)}
+      >
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Lock className="h-5 w-5 text-red-500" />
+              Police Agency Order - {selectedPDRunOrder?.name}
+            </DialogTitle>
+            <DialogDescription>
+              The police agencies run order for this location
+            </DialogDescription>
+          </DialogHeader>
+          <div className="mt-4">
+            <div className="bg-muted p-4 rounded-lg flex flex-wrap gap-2">
+              {selectedPDRunOrder?.runOrder.map((station, index) => (
+                <span key={index} className="flex items-center gap-1">
+                  <Badge variant="outline" className="text-xs rounded-xs">
+                    {station}
+                  </Badge>
+                  {index !== selectedPDRunOrder?.runOrder.length - 1 && "→"}
+                </span>
+              ))}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       <CreateLocationModal
         open={showForm}
         onOpenChange={setShowForm}

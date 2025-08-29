@@ -67,7 +67,7 @@ export default function EMSCreateCallForm() {
       },
       chief_complaint: 0,
       initial_complaint: 0,
-      sub_complaint: 0,
+      track: "",
       case_entry_completed_time: "",
     },
     questions: {
@@ -267,7 +267,7 @@ export default function EMSCreateCallForm() {
         setActiveTab("send");
       }
 
-      if (answer.pushSuffix) {
+      if (answer.pushSuffixes) {
         // setEMSCase((prevCase) => ({
         //   ...prevCase,
         //   codes: {

@@ -12,6 +12,8 @@ import type { ISavedNewCall } from "./calls/ISavedNewCall";
 import type { IEMSCase } from "./calls/IEMSCase";
 import type { IEMSAnswer } from "./protocols/ems/IEMSAnswer";
 import type { IEMSQuestion } from "./protocols/ems/IEMSQuestion";
+import type { IDependencyResult } from "./protocols/ems/IEMSAnswer";
+import type { IPatient } from "./protocols/ems/IPatient";
 
 export {
   ISettings,
@@ -27,5 +29,7 @@ export {
   ISavedNewCall,
   IEMSCase,
   IEMSAnswer,
-  IEMSQuestion
+  IEMSQuestion,
+  IDependencyResult,
+  IPatient
 };

@@ -1,5 +1,7 @@
-import pool from "@/lib/database";
+
+import { pool } from "@/lib/database";
 import { getServerUser } from "./authService";
+import { OkPacket } from "mysql2";
 
 export async function createCall(newCase: any): Promise<string> {
   const user = await getServerUser();
@@ -26,7 +28,12 @@ export async function createCall(newCase: any): Promise<string> {
     JSON.stringify(newCase),
   ];
   try {
-    await pool.query(sql, values);
+    const [result] = await pool.query<OkPacket>(sql, values);
+
+    if (result.affectedRows === 0) {
+      throw new Error("Insert failed, no rows affected");
+    }
+
     console.log("Call created successfully with run number:", runNumber);
   } catch (error) {
     console.error("Error creating call:", error);

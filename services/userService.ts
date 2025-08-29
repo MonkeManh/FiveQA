@@ -1,4 +1,4 @@
-import pool from "@/lib/database";
+import { pool } from "@/lib/database";
 import { IUser } from "@/models/interfaces";
 
 export async function doesUserExist(discordId: string): Promise<boolean> {

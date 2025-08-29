@@ -83,7 +83,7 @@ export function MultiSelectInput({
   };
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className="relative w-full">
       <div className="border border-input rounded-xs p-2 focus-within:ring-offset-2">
         <div className="flex flex-wrap gap-1 mb-2">
           {selected.map((item, index) => (
